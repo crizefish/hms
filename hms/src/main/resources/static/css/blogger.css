@@ -1,0 +1,82 @@
+/* CSS Document */
+html, body {
+	font-style:Î¢ÈíÑÅºÚ;
+}
+body {
+	background-image: url(../image/blogger.jpg);
+	background-size: cover;
+	width: 100%;
+	;
+}
+
+ul {
+	list-style-type: none;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+li {
+	color: #009;
+	font-size: 20px;
+	float: left;
+	width: auto;
+}
+
+.recent_action_word {
+	width: 600px;
+	color: #06Cs;
+	font-size: 25px;
+	float: left;
+	margin-left:200px;
+}
+.recent_action_status {
+	width: 1000px;
+	color: #000;
+	font-size: 20px;
+	float: left;
+	margin-left:200px;
+}
+.blank {
+	width: 1000px;
+	height: 50px;
+}
+.singel_status {
+	width: 1000px;
+	height: 50px;
+}
+.video_color {
+	color:#93C;
+	font-size:25px;
+	font-style:ºÚÌå
+}
+.user_color {
+	color: #393;
+}
+.down_words {
+	font-size: 14px;
+	width: 400px;
+	text-align: center;
+	margin: 0 auto;
+	color: #FFF;
+}
+.blogger_content {
+	width: auto;
+	height: 100px;
+	text-align: center;
+	margin: 0 auto;
+	background-color: #FFF;
+	opacity: 0.50;
+}
+.title_image{
+	 width:80%;
+	 height:80;
+	 margin-top:20px;
+}
+.search_result_title{
+width: 1000px;
+	color: #000;
+	font-size: 20px;
+	float: left;
+	margin-left:330px;
+	display:none;
+}

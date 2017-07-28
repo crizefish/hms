@@ -1,0 +1,417 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>欢迎来到我的博客</title>
+<link rel="stylesheet" type="text/css" href="../css/H-ui.reset.css" />
+<link media="screen" rel="stylesheet" type="text/css"
+	href="../css/jq22.css" />
+<link rel="stylesheet" type="text/css" href="../css/common.css" />
+<link rel="stylesheet" type="text/css" href="../css/blogger.css" />
+ <link rel="stylesheet" href="/plug/alert/BeAlert.css" />
+<script src="../js/jquery/3.0/jquery-3.0.0.js"></script>
+<script src="../js/jquery/3.0/jquery-3.0.0.min.js"></script>
+<script src="../js/jquery/jquery.easing.min.js"></script>
+<script src="../js/jquery/jquery.searchMeme.js"></script>
+<script type="text/javascript" src="../js/init.js"></script>
+<script type="text/javascript" src="../js/easing.js"></script>
+<script src="../js/common.js"></script>
+<script src="/plug/alert/BeAlert.js"></script>
+<style>
+.search {
+	clear: both;
+	width: 300px;
+	height: 60px;
+	margin: 0;
+	padding: 0;
+	float: right;
+}
+
+.recent_actions_detail {
+	clear: both;
+	width: 800px;
+	height: 90px;
+	margin: 0;
+	padding: 0;
+	display: none;
+	font-size: 20px;
+	float: right;
+}
+
+.search input {
+	width: 200px;
+	height: 25px;
+	border: 1px solid #9FF;
+	border-radius: 5px;
+	opacity: 0.5;
+	font-size: 14px;
+}
+
+.kinds {
+	clear: both;
+	width: 95%;
+	height: 80px;
+	margin: 0;
+	padding: 0;
+	float: right;
+	font-family: Baskerville, "Palatino Linotype", Palatino,
+		"Century Schoolbook L", "Times New Roman", serif;
+}
+
+.kinds_submit {
+	clear: both;
+	width: 80%;
+	height: 30px;
+	margin: 0;
+	padding: 0;
+	float: right;
+	margin-right: 80px;
+}
+
+.kinds ul {
+	list-style-type: none;
+	width: 100%;
+	height: 50px;
+	margin: 0;
+	padding: 0;
+}
+
+.kinds li {
+	color: #009;
+	font-size: 20px;
+	float: left;
+	width: 33.33%;
+	height: 100%;
+	font-size: 23px;
+}
+
+.kinds input, select {
+	width: 150px;
+	height: 25px;
+	border: 1px solid #9FF;
+	border-radius: 5px;
+	opacity: 0.3;
+	font-size: 14px;
+}
+
+.submit_button {
+	width: 100px;
+	height: 30px;
+	color: #0C0;
+	border: 1px solid #9FF;
+	border-radius: 5px;
+	background-color: #0FF;
+	font-size: 14px;
+	float: right;
+}
+
+.prom_title {
+	width: 750px;
+	height: 25px;
+	border: 1px solid #9FF;
+	border-radius: 5px;
+	opacity: 0.3;
+	font-size: 14px;
+}
+
+.kinds option {
+	background-color: #3CC;
+}
+
+.search img {
+	background-color: #337ab77;
+	vertical-align: middle;
+}
+
+#main {
+	max-width: 960px;
+	margin: 0 auto;
+}
+</style>
+</head>
+<body>
+<form id="form">
+	<div class="title_tops">
+		<div class="welcome_div">
+			<ul>
+				<span class="welcome_top">欢迎您，XXX</span>
+			</ul>
+		</div>
+		<div class="title_content">
+			<ul>
+				<li><span class="index_a_1"
+					onClick="window.location.href='/hello/'">首页</span></li>
+				<li><span class="index_a_2">博客</span></li>
+				<li><span class="index_a_3">视频</span></li>
+				<li><span class="index_a_4">图片</span></li>
+				<li><span class="index_a_5">资源</span></li>
+				<li><span class="index_a_6">留言</span></li>
+			</ul>
+		</div>
+	</div>
+	<div id="wrapper"
+		style="width: 1000px; margin-top: 10px; height: 100px;">
+		<div id="menu">
+			<ul>
+				<li><a href="">Java</a></li>
+				<li><a href="">Python</a></li>
+				<li><a href="">SQL</a></li>
+				<li><a href="">Html</a></li>
+				<li><a href="">Frame</a></li>
+				<li><a href="">Linux</a></li>
+				<li><a href="">Docker</a></li>
+				<li><a href="">Untils</a></li>
+				<li><a href="">Others</a></li>
+			</ul>
+		</div>
+		<div class="search">
+			<input type="text" placeholder="输入其他关键字搜索" id="searchKey"/> <img
+				src="../image/icon-search.png" width="30" height="30"
+				style="margin-bottom: 0px;" alt="" id="search_id" />
+		</div>
+		<div class="recent_actions_detail">
+			<img src="../image/search_result.png" width="30%" height="50%" alt=""
+				id="search_id" />
+		</div>
+		<div class="recent_actions_detail">
+			共找到<span class="user_color" th:text="${#lists.size(bloggers)}"></span>篇与<span class="user_color" id="key_word_show"></span>相关文章,点击相关关键字：<a
+				class="user_color">虚拟机</a>、<a class="user_color">内存溢出</a>进行站外搜索
+		</div>
+		<div class="kinds">
+			<ul>
+				<img src="../image/222.png" width="450" height="45" alt="" />
+			</ul>
+		</div>
+		<div class="kinds">
+			<ul>
+				<li>关键字: <input type="text" class="search_key" name="keyWord" id="keyWord"/>
+				</li>
+				<li>主题: <select class="search_key" name="type" id="type">
+
+					<option>-请选择-</option>
+					<option>Java</option>
+					<option>Python</option>
+					<option>SQL</option>
+					<option>Html</option>
+					<option>Frame</option>
+					<option>Linux</option>
+					<option>Others</option> </select>
+				</li>
+				<li>对谁可见: <select class="search_key" name="whoseRead" id="whoseRead">
+						<option>-请选择-</option>
+						<option>所有人</option>
+						<option>仅自己</option>
+				</select>
+				</li>
+			</ul>
+			<ul>
+				<li style="width: 750px">标题： <input type="text"
+					class="prom_title" style="width: 650px" name="title" id="title"/></li>
+			</ul>
+		</div>
+		<div class="kinds_submit">
+			<input type="button" class="submit_button" value="提交" />
+		</div>
+	</div>
+	<div>
+
+		<div class="search_result_title" style="float: left">
+				<tr th:each="prod : ${bloggers}">
+				<div class="singel_status">
+				<a class="user_color" th:text="${prod.createBy}"></a>在
+				<a class="user_color" th:text="${prod.createDate}"></a>发表博客
+				<a class="video_color" th:text="${prod.title}"></a> ，点击查看详情；
+				</div>
+			    </tr>
+			<div class="singel_status">
+				<a class="video_color">点击查看其他9条记录>></a>
+			</div>
+		</div>
+
+		<div id="main" role="main">
+			<div id="customized-buttonpane" class="editor"
+				style="background-color: #66F">
+				<textarea style="width: 100%;height: 350px;background-color:#FFF;font-size: 20px" name="content" id="content"></textarea></div>
+		</div>
+		<div class="recent_actions">
+			<div class="recent_action_word">
+				<img src="../image/sss.png" width="450" height="45" alt="" />
+			</div>
+			<div class="blank"></div>
+			<div class="recent_action_status" style="float: left">
+				<div class="singel_status"></div>
+				<tr th:each="prod : ${bloggers}">
+				<div class="singel_status">
+				<a class="user_color" th:text="${prod.createBy}"></a>在
+				<a class="user_color" th:text="${prod.createDate}"></a>发表博客
+				<a class="video_color" th:text="${prod.title}"></a> ，点击標題查看详情；
+				</div>
+			    </tr>
+				<div class="singel_status">
+					<a class="video_color">点击查看更多最新动态>></a>
+				</div>
+			</div>
+		</div>
+		</div>
+		</form>
+		
+		<div style="text-align: center">
+</div>
+</body>
+<script>
+	
+	$(".serch_button_title").mouseover(function() {
+		$(".serch_button_title").css("background-color", "#F69");
+		$(this).css("cursor", "pointer");
+	});
+	$(".serch_button_title").mouseout(function() {
+		$(".serch_button_title").css("background-color", "#F09");
+	});
+
+	$(".index_a_1").mouseover(function() {
+		$(this).css("color", "#FFF");
+		$(this).css("cursor", "pointer");
+	});
+	$(".index_a_1").mouseout(function() {
+		$(this).css("color", "#006");
+	});
+
+	$(".index_a_2").mouseover(function() {
+		$(this).css("color", "#FFF");
+		$(this).css("cursor", "pointer");
+	});
+	$(".index_a_2").mouseout(function() {
+		$(this).css("color", "#006");
+	});
+
+	$(".index_a_3").mouseover(function() {
+		$(this).css("color", "#FFF");
+		$(this).css("cursor", "pointer");
+	});
+	$(".index_a_3").mouseout(function() {
+		$(this).css("color", "#006");
+	});
+
+	$(".index_a_4").mouseover(function() {
+		$(this).css("color", "#FFF");
+		$(this).css("cursor", "pointer");
+	});
+	$(".index_a_4").mouseout(function() {
+		$(this).css("color", "#006");
+	});
+
+	$(".index_a_5").mouseover(function() {
+		$(this).css("color", "#FFF");
+		$(this).css("cursor", "pointer");
+	});
+	$(".index_a_5").mouseout(function() {
+		$(this).css("color", "#006");
+	});
+
+	$(".index_a_6").mouseover(function() {
+		$(this).css("color", "#FFF");
+		$(this).css("cursor", "pointer");
+	});
+	$(".index_a_6").mouseout(function() {
+		$(this).css("color", "#006");
+	});
+
+	$("#search_id").click(function() {
+		searchBlogger($("#searchKey").val());
+	});
+
+	function searchBlogger(keyword){
+		$.ajax({
+			type:"post",
+			url:"/hello/query",
+			data:{"keyword":keyword},
+			type:"post",
+			dataType:"json",
+			success:function(data){
+				if(data.msg=='1'){
+					$(".kinds").hide();
+					$(".kinds_submit").hide();
+					$("#main").hide();
+					$(".recent_actions").hide();
+					$(".recent_actions_detail").show();
+					$(".search_result_title").show();
+					$("#key_word_show").html(keyword);
+					
+				}else{
+					 alert("未找到和“"+keyword+"”相關文章", "", function () {
+			            }, {type: 'success', confirmButtonText: 'OK'});
+				}
+			},
+			error:function(data){
+				alert("error"+data);
+			}
+			})
+	}
+	
+	
+	$("#search_id").mouseover(function() {
+		$(this).css("color", "#006");
+	});
+	$(".submit_button").mouseover(function() {
+		$(this).css("background-color", "#006");
+	});
+	$(".submit_button").mouseout(function() {
+		$(this).css("background-color", "#0FF");
+	});
+	$(".submit_button").click(function() {
+		if(checkNull()){
+	            confirm("确定提交博文吗?", "", function (isConfirm) {
+	                if (isConfirm) {
+	                	$.ajax({
+	            			type:"post",
+	            			url:"/hello/save",
+	            			data:$("#form").serialize(),
+	            			type:"post",
+	            			dataType:"json",
+	            			success:function(data){
+	            				 alert("发表成功!点击查看文章详情", "", function () {
+	            					 window.location.href='/hello/detail?bloggerId='+data.id;
+	            		            }, {type: 'success', confirmButtonText: '查看'});
+	            			},
+	            			error:function(data){
+	            				alert("error"+data);
+	            			}
+	            			})
+	                } else {
+	                    //after click the cancel
+	                }
+	            }, {confirmButtonText: '确认', cancelButtonText: '取消', width: 400});
+
+		}
+	        });
+
+	function checkNull(){
+		if($("#title").val()==""){
+			 alert("请填写标题!", "", function () {
+	            }, {type: 'success', confirmButtonText: 'OK'});
+			 return;
+		}
+		if($("#content").val()==""){
+			 alert("请填写正文!", "", function () {
+	            }, {type: 'success', confirmButtonText: 'OK'});
+			 return;
+		}
+		if($("#keyWord").val()==""){
+			 alert("请填写关键字!", "", function () {
+	            }, {type: 'success', confirmButtonText: 'OK'});
+			 return;
+		}
+		if($("#type").val()=="-请选择-"){
+			 alert("请选择文章类型!", "", function () {
+	            }, {type: 'success', confirmButtonText: 'OK'});
+			 return;
+		}
+		if($("#whoseRead").val()=="-请选择-"){
+			 alert("请选择阅读权限!", "", function () {
+	            }, {type: 'success', confirmButtonText: 'OK'});
+			 return;
+		}
+		return true;
+	}
+</script>
+</html>

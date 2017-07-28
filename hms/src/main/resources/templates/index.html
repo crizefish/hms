@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<title>首页</title>
+<link rel="stylesheet" type="text/css" href="../css/H-ui.reset.css" />
+<link rel="stylesheet" type="text/css" href="../css/index.css" />
+<link rel="stylesheet" type="text/css" href="../css/common.css" />
+<script src="../js/jquery/3.0/jquery-3.0.0.js"></script>
+<script src="../js/jquery/3.0/jquery-3.0.0.min.js"></script>
+<script src="../js/index.js"></script>
+</head>
+<body>
+	<div class="title_tops">
+		<div class="welcome_div">
+			<ul>
+				<span class="welcome_top">欢迎您，XXX</span>
+			</ul>
+		</div>
+		<div class="title_content">
+			<ul>
+				<li><span class="index_a_1"
+					onClick="window.location.href=window.location.href">我的首页</span></li>
+				<li><span class="index_a_2"
+					onClick="window.location.href='/blogger/'">技术博客</span></li>
+				<li><span class="index_a_3"
+					onClick="window.location.href='/video/'">生活随笔</span></li>
+				<!-- <li><span class="index_a_4"
+					onClick="window.location.href='/photo/'">生活图片</span></li> -->
+				<li><span class="index_a_5"
+					onClick="window.location.href='/resource/'">java类库</span></li>
+				<!-- <li><span class="index_a_6">给我留言</span></li> -->
+			</ul>
+		</div>
+	</div>
+	<div class="search_box">
+		<dl>
+			<dd class="search_t">
+				<img src="../image/hujian.png" width="500px" height="50px" alt="" />
+			</dd>
+		</dl>
+		<ul>
+			<li class="search_logo"><img class="search_image"
+				src="../image/seach_log.png" /></li>
+			<li class="search_input"><input type="text" name="search"
+				class="search_input" placeholder="输入搜索内容" /></li>
+			<li class="search_word"><input type="button"
+				name="search_button" class="serch_button_title" value="全站搜索" /></li>
+		</ul>
+	</div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div class="down_words">个人网站，非商业用途 ©2017 hujian
+		请联系我1032936569@qq.com</div>
+	<script type="text/jscript">
+		
+	 $(".serch_button_title").mouseover(function(){
+  $(".serch_button_title").css("background-color","#F69");$(this).css("cursor","pointer");
+});
+      	 $(".serch_button_title").mouseout(function(){
+  $(".serch_button_title").css("background-color","#F09");
+}); 
+ 
+ $(".index_a_1").mouseover(function(){$(this).css("color","#FFF");$(this).css("cursor","pointer");});
+ $(".index_a_1").mouseout(function(){ $(this).css("color","#006");}); 
+ 
+  $(".index_a_2").mouseover(function(){$(this).css("color","#FFF");$(this).css("cursor","pointer");});
+ $(".index_a_2").mouseout(function(){ $(this).css("color","#006");}); 
+ 
+  $(".index_a_3").mouseover(function(){$(this).css("color","#FFF");$(this).css("cursor","pointer");});
+ $(".index_a_3").mouseout(function(){ $(this).css("color","#006");}); 
+ 
+  $(".index_a_4").mouseover(function(){$(this).css("color","#FFF");$(this).css("cursor","pointer");});
+ $(".index_a_4").mouseout(function(){ $(this).css("color","#006");}); 
+ 
+  $(".index_a_5").mouseover(function(){$(this).css("color","#FFF");$(this).css("cursor","pointer");});
+ $(".index_a_5").mouseout(function(){ $(this).css("color","#006");}); 
+ 
+  $(".index_a_6").mouseover(function(){$(this).css("color","#FFF");$(this).css("cursor","pointer");});
+ $(".index_a_6").mouseout(function(){ $(this).css("color","#006");}); 
+   
+	</script>
+</body>
+</html>
