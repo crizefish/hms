@@ -13,7 +13,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "blogger")
 public class Blogger {
-	
+	 
 	  @Id
 	    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	    @Column(name = "id", nullable = false)
