@@ -1,4 +1,4 @@
-package com.hj.pers.controller;
+package com.hj.pers.rest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
