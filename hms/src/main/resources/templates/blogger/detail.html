@@ -1,78 +1,83 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-<meta charset="utf-8" />
-<title>{title}</title>
-<link rel="stylesheet" type="text/css" href="../css/common.css" />
- <link rel="stylesheet" href="/plug/alert/BeAlert.css" />
-<script src="../js/jquery/3.0/jquery-3.0.0.js"></script>
-<script src="../js/jquery/3.0/jquery-3.0.0.min.js"></script>
-<script src="../js/common.js"></script>
-<script src="/plug/alert/BeAlert.js"></script>
-<style type="text/css">
-body {
-	background-image: url(../image/blogger.jpg);
-	background-size: cover;
-	width: 100%;
-	;
-}
-
-.blogger_body{
-text-align: center;
-margin: 0 auto;
-width: 60%;
-height:auto;
-border: 1px solid #FFF;
-background-color: #fff;
-}
-.title{
-font-size: 20px;
-font-family: 微软雅黑;
-color: #00CCFF;
-}
-.blogger_content{
-text-align: center;
-margin: 0 auto;
-width: 90%;
-font-size: 15px;
-font-family: 微软雅黑;
-color: #3366FF;
-
-}
-</style>
+<meta charset="UTF-8" />
+<title>博客详情</title>
+<meta name="keywords" content="个人博客模板古典系列之――江南墨卷" />
+<meta name="description" content="个人博客模板古典系列之――江南墨卷" />
+<link href="../css/base.css" rel="stylesheet" />
+<link href="../css/main.css" rel="stylesheet" />
+<script type="text/javascript" src="../js/juuery/1.9/jquery.js"></script>
 </head>
 <body>
-	<div class="title_tops">
-		<div class="welcome_div">
-			<ul>
-				<span class="welcome_top">欢迎您，XXX</span>
-			</ul>
-		</div>
-		<div class="title_content">
-			<ul>
-				<li><span class="index_a_1"
-					onClick="window.location.href=window.location.href">首页</span></li>
-				<li><span class="index_a_2"
-					onClick="window.location.href='/hello/blogger'">博客</span></li>
-				<li><span class="index_a_3">视频</span></li>
-				<li><span class="index_a_4">图片</span></li>
-				<li><span class="index_a_5">资源</span></li>
-				<li><span class="index_a_6">留言</span></li>
-			</ul>
-		</div>
-	</div>
-
-	<div class="blogger_body">
-	<img src="../image/detail.png" width="50%" height="50%" alt="" id="search_id" />
-	<p class="title" th:text="${blogger.title}" ></p>
-	<pre >
-	<div class="blogger_content" th:text="${blogger.content}"></div>
-	</pre>
-	</div>
-
-	
+<div id="wrapper">
+  <header>
+    <div class="headtop"></div>
+    <div class="contenttop">
+      <div class="logo f_l" th:text="${blogger.type+'—'+blogger.title}"></div>
+      <div class="search f_r">
+        <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
+          <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text" />
+          <input name="show" value="title" type="hidden" />
+          <input name="tempid" value="1" type="hidden" />
+          <input name="tbname" value="news" type="hidden" />
+          <input name="Submit" class="input_submit" value="搜索" type="submit" />
+        </form>
+      </div>
+      <div class="blank"></div>
+      <nav>
+        <div  class="navigation">
+          <ul class="menu">
+            <li><a th:href="@{'/index/'}" >网址首页</a></li>
+            <li><a style="color: silver;" th:href="@{'/blogger/'}" >技术博客</a> </li>
+            <li><a th:href="@{'/resource/'}" >Java类库</a></li>
+            <li><a th:href="@{'/photo/'}" >杂谈随记</a> </li>
+            <li><a th:href="@{'/message/'}" >给我留言</a> </li>
+          </ul>
+        </div>
+      </nav>
+      <script type="text/javascript">
+	// Navigation Menu
+	$(function() {
+		$(".menu ul").css({display: "none"}); // Opera Fix
+		$(".menu li").hover(function(){
+			$(this).find('ul:first').css({visibility: "visible",display: "none"}).slideDown("normal");
+		},function(){
+			$(this).find('ul:first').css({visibility: "hidden"});
+		});
+	});
+</script> 
+    </div>
+  </header>
+  <div class="container">
+    <div class="con_content">
+      <div class="about_box">
+        <h2 class="nh1">
+        <span>您现在的位置是：<a href="/" target="_blank">网站首页>></a><a th:href="@{'/blogger/'}"  target="_blank">技术博客</a></span>
+        
+        <b th:text="${'创建时间'+blogger.createDate}"></b></h2>
+        <div class="f_box">
+          <p class="a_title" th:text="${blogger.title}"></p>
+          <p class="p_title"></p>
+        </div>
+        <ul class="about_content">
+          <p th:text="${blogger.content}"> </p>
+        </ul>
+      </div>
+    </div>
+    <div class="blank"></div>
+  </div>
+  
+  <footer>
+    <div class="footer">
+      <div class="f_l">
+        <p>想了解更多请联系我，邮箱地址：<a href="http://www.yangqq.com">103293443@qq.com</a></p>
+      </div>
+      <div class="f_r textr">
+        <p></p>
+      </div>
+    </div>
+  </footer>
+</div>
 </body>
-<script type="text/javascript">
-
-</script>
 </html>

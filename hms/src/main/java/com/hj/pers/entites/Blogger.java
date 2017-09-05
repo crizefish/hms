@@ -37,7 +37,7 @@ public class Blogger {
 	private Long createBy;
 	
 	@Column(name="create_date")
-	@DateTimeFormat(pattern="yyyy_MM_dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createDate;
 	
 	public Blogger(String title, String keyWord, String type, String content, String whoseRead, Long createBy,

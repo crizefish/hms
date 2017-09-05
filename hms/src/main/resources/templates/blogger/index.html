@@ -1,417 +1,151 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8" />
-<title>欢迎来到我的博客</title>
-<link rel="stylesheet" type="text/css" href="../css/H-ui.reset.css" />
-<link media="screen" rel="stylesheet" type="text/css"
-	href="../css/jq22.css" />
-<link rel="stylesheet" type="text/css" href="../css/common.css" />
-<link rel="stylesheet" type="text/css" href="../css/blogger.css" />
- <link rel="stylesheet" href="/plug/alert/BeAlert.css" />
-<script src="../js/jquery/3.0/jquery-3.0.0.js"></script>
-<script src="../js/jquery/3.0/jquery-3.0.0.min.js"></script>
-<script src="../js/jquery/jquery.easing.min.js"></script>
-<script src="../js/jquery/jquery.searchMeme.js"></script>
-<script type="text/javascript" src="../js/init.js"></script>
-<script type="text/javascript" src="../js/easing.js"></script>
-<script src="../js/common.js"></script>
-<script src="/plug/alert/BeAlert.js"></script>
-<style>
-.search {
-	clear: both;
-	width: 300px;
-	height: 60px;
-	margin: 0;
-	padding: 0;
-	float: right;
-}
-
-.recent_actions_detail {
-	clear: both;
-	width: 800px;
-	height: 90px;
-	margin: 0;
-	padding: 0;
-	display: none;
-	font-size: 20px;
-	float: right;
-}
-
-.search input {
-	width: 200px;
-	height: 25px;
-	border: 1px solid #9FF;
-	border-radius: 5px;
-	opacity: 0.5;
-	font-size: 14px;
-}
-
-.kinds {
-	clear: both;
-	width: 95%;
-	height: 80px;
-	margin: 0;
-	padding: 0;
-	float: right;
-	font-family: Baskerville, "Palatino Linotype", Palatino,
-		"Century Schoolbook L", "Times New Roman", serif;
-}
-
-.kinds_submit {
-	clear: both;
-	width: 80%;
-	height: 30px;
-	margin: 0;
-	padding: 0;
-	float: right;
-	margin-right: 80px;
-}
-
-.kinds ul {
-	list-style-type: none;
-	width: 100%;
-	height: 50px;
-	margin: 0;
-	padding: 0;
-}
-
-.kinds li {
-	color: #009;
-	font-size: 20px;
-	float: left;
-	width: 33.33%;
-	height: 100%;
-	font-size: 23px;
-}
-
-.kinds input, select {
-	width: 150px;
-	height: 25px;
-	border: 1px solid #9FF;
-	border-radius: 5px;
-	opacity: 0.3;
-	font-size: 14px;
-}
-
-.submit_button {
-	width: 100px;
-	height: 30px;
-	color: #0C0;
-	border: 1px solid #9FF;
-	border-radius: 5px;
-	background-color: #0FF;
-	font-size: 14px;
-	float: right;
-}
-
-.prom_title {
-	width: 750px;
-	height: 25px;
-	border: 1px solid #9FF;
-	border-radius: 5px;
-	opacity: 0.3;
-	font-size: 14px;
-}
-
-.kinds option {
-	background-color: #3CC;
-}
-
-.search img {
-	background-color: #337ab77;
-	vertical-align: middle;
-}
-
-#main {
-	max-width: 960px;
-	margin: 0 auto;
-}
-</style>
+<meta charset="UTF-8" />
+<title>个人博客模板古典系列之――江南墨卷</title>
+<meta name="keywords" content="个人博客模板古典系列之――江南墨卷" />
+<meta name="description" content="个人博客模板古典系列之――江南墨卷" />
+<link href="../css/base.css" rel="stylesheet" />
+<link href="../css/index.css" rel="stylesheet" />
+<script type="text/javascript" src="../js/jquery/1.9/jquery.js"></script>
 </head>
 <body>
-<form id="form">
-	<div class="title_tops">
-		<div class="welcome_div">
-			<ul>
-				<span class="welcome_top">欢迎您，XXX</span>
-			</ul>
-		</div>
-		<div class="title_content">
-			<ul>
-				<li><span class="index_a_1"
-					onClick="window.location.href='/hello/'">首页</span></li>
-				<li><span class="index_a_2">博客</span></li>
-				<li><span class="index_a_3">视频</span></li>
-				<li><span class="index_a_4">图片</span></li>
-				<li><span class="index_a_5">资源</span></li>
-				<li><span class="index_a_6">留言</span></li>
-			</ul>
-		</div>
-	</div>
-	<div id="wrapper"
-		style="width: 1000px; margin-top: 10px; height: 100px;">
-		<div id="menu">
-			<ul>
-				<li><a href="">Java</a></li>
-				<li><a href="">Python</a></li>
-				<li><a href="">SQL</a></li>
-				<li><a href="">Html</a></li>
-				<li><a href="">Frame</a></li>
-				<li><a href="">Linux</a></li>
-				<li><a href="">Docker</a></li>
-				<li><a href="">Untils</a></li>
-				<li><a href="">Others</a></li>
-			</ul>
-		</div>
-		<div class="search">
-			<input type="text" placeholder="输入其他关键字搜索" id="searchKey"/> <img
-				src="../image/icon-search.png" width="30" height="30"
-				style="margin-bottom: 0px;" alt="" id="search_id" />
-		</div>
-		<div class="recent_actions_detail">
-			<img src="../image/search_result.png" width="30%" height="50%" alt=""
-				id="search_id" />
-		</div>
-		<div class="recent_actions_detail">
-			共找到<span class="user_color" th:text="${#lists.size(bloggers)}"></span>篇与<span class="user_color" id="key_word_show"></span>相关文章,点击相关关键字：<a
-				class="user_color">虚拟机</a>、<a class="user_color">内存溢出</a>进行站外搜索
-		</div>
-		<div class="kinds">
-			<ul>
-				<img src="../image/222.png" width="450" height="45" alt="" />
-			</ul>
-		</div>
-		<div class="kinds">
-			<ul>
-				<li>关键字: <input type="text" class="search_key" name="keyWord" id="keyWord"/>
-				</li>
-				<li>主题: <select class="search_key" name="type" id="type">
-
-					<option>-请选择-</option>
-					<option>Java</option>
-					<option>Python</option>
-					<option>SQL</option>
-					<option>Html</option>
-					<option>Frame</option>
-					<option>Linux</option>
-					<option>Others</option> </select>
-				</li>
-				<li>对谁可见: <select class="search_key" name="whoseRead" id="whoseRead">
-						<option>-请选择-</option>
-						<option>所有人</option>
-						<option>仅自己</option>
-				</select>
-				</li>
-			</ul>
-			<ul>
-				<li style="width: 750px">标题： <input type="text"
-					class="prom_title" style="width: 650px" name="title" id="title"/></li>
-			</ul>
-		</div>
-		<div class="kinds_submit">
-			<input type="button" class="submit_button" value="提交" />
-		</div>
-	</div>
-	<div>
-
-		<div class="search_result_title" style="float: left">
-				<tr th:each="prod : ${bloggers}">
-				<div class="singel_status">
-				<a class="user_color" th:text="${prod.createBy}"></a>在
-				<a class="user_color" th:text="${prod.createDate}"></a>发表博客
-				<a class="video_color" th:text="${prod.title}"></a> ，点击查看详情；
-				</div>
-			    </tr>
-			<div class="singel_status">
-				<a class="video_color">点击查看其他9条记录>></a>
-			</div>
-		</div>
-
-		<div id="main" role="main">
-			<div id="customized-buttonpane" class="editor"
-				style="background-color: #66F">
-				<textarea style="width: 100%;height: 350px;background-color:#FFF;font-size: 20px" name="content" id="content"></textarea></div>
-		</div>
-		<div class="recent_actions">
-			<div class="recent_action_word">
-				<img src="../image/sss.png" width="450" height="45" alt="" />
-			</div>
-			<div class="blank"></div>
-			<div class="recent_action_status" style="float: left">
-				<div class="singel_status"></div>
-				<tr th:each="prod : ${bloggers}">
-				<div class="singel_status">
-				<a class="user_color" th:text="${prod.createBy}"></a>在
-				<a class="user_color" th:text="${prod.createDate}"></a>发表博客
-				<a class="video_color" th:text="${prod.title}"></a> ，点击標題查看详情；
-				</div>
-			    </tr>
-				<div class="singel_status">
-					<a class="video_color">点击查看更多最新动态>></a>
-				</div>
-			</div>
-		</div>
-		</div>
-		</form>
-		
-		<div style="text-align: center">
+<!-- <div class="topnav">
+</div> -->
+<div id="wrapper">
+  <header>
+    <div class="headtop"></div>
+    <div class="contenttop">
+<!--       <div class="logo f_l">技术博客篇</div>
+ -->      <div class="search f_r">
+        <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
+          <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text" />
+          <input name="show" value="title" type="hidden" />
+          <input name="tempid" value="1" type="hidden" />
+          <input name="tbname" value="news" type="hidden" />
+          <input name="Submit" class="input_submit" value="搜索" type="submit" />
+        </form>
+      </div>
+      <div class="blank"></div>
+      <nav>
+        <div  class="navigation">
+           <ul class="menu">
+            <li><a th:href="@{'/index/'}" >网址首页</a></li>
+            <li><a style="color: silver;" th:href="@{'/blogger/'}" >技术博客</a> </li>
+            <li><a th:href="@{'/resource/'}" >Java类库</a></li>
+            <li><a th:href="@{'/photo/'}" >杂谈随记</a> </li>
+            <li><a th:href="@{'/message/'}" >给我留言</a> </li>
+          </ul>
+        </div>
+      </nav>
+      <SCRIPT type="text/javascript">
+	// Navigation Menu
+	$(function() {
+		$(".menu ul").css({display: "none"}); // Opera Fix
+		$(".menu li").hover(function(){
+			$(this).find('ul:first').css({visibility: "visible",display: "none"}).slideDown("normal");
+		},function(){
+			$(this).find('ul:first').css({visibility: "hidden"});
+		});
+	});
+</SCRIPT> 
+    </div>
+  </header>
+  <div class="jztop"></div>
+  
+  <div class="container">
+    <div class="bloglist f_l">
+    <ul style="width: 620px" th:each="prod :${bloggers}">
+    	<li>
+	     <h3><a th:href="@{'detail?bloggerId='+${prod.id}}"  th:text="${prod.title}"></a></h3>
+	      <figure><img src="../images/img_1.jpg" alt="图片被狗狗给叼走了" /></figure>
+	      <ul>
+	        <p th:text="${#strings.abbreviate(prod.content,200)}"> </p>
+	        <a title="TODO" th:href="@{'detail?bloggerId='+${prod.id}}"  target="_blank" class="readmore">阅读全文&gt;&gt;</a>
+	      </ul>
+	      <p class="dateview"><span th:text="${prod.createDate}"></span>作者：<span th:text="${prod.createBy}"></span></p>
+   		</li>
+    </ul>
+      
+      <h3><a href="/jstt/bj/2015-01-09/740.html">【匆匆那些年】总结个人博客经历的这四年…</a></h3>
+      <figure><img src="../images/img_2.jpg" alt="【匆匆那些年】总结个人博客经历的这四年…" /></figure>
+      <ul>
+        <p>博客从最初的域名购买，到上线已经有四年的时间了，这四年的时间，有笑过，有怨过，有悔过，有执着过，也有放弃过…但最后还是坚持了下来，时间如此匆匆，等再回过头已来不及去弥补</p>
+        <a title="【匆匆那些年】总结个人博客经历的这四年…" href="/jstt/bj/2015-01-09/740.html" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
+      </ul>
+      <p class="dateview"><span>2015-01-09</span><span>作者：杨青</span><span>个人博客：[<a href="/jstt/bj/">心得笔记</a>]</span></p>
+    </div>
+    <div class="r_box f_r">
+      <div class="tit01">
+        <h3 class="tit">联系我</h3>
+        <div class="gzwm">
+          <ul>
+            <li><a class="email" href="#" target="_blank">我的电话</a></li>
+            <li><a class="qq" href="#mailto:admin@admin.com" target="_blank">我的邮箱</a></li>
+            <li><a class="tel" href="#" target="_blank">我的QQ</a></li>
+            <li><a class="prize" href="#">个人奖项</a></li>
+          </ul>
+        </div>
+      </div>
+      <!--tit01 end-->
+      
+      <div class="tuwen">
+        <h3 class="tit">文章推荐</h3>
+        <ul>
+          <li><a href="/"><img src="../images/01.jpg" /><b>住在手机里的朋友</b></a>
+            <p><span class="tulanmu"><a href="/">手机配件</a></span><span class="tutime">2015-02-15</span></p>
+          </li>
+          <li><a href="/"><img src="../images/02.jpg" /><b>教你怎样用欠费手机拨打电话</b></a>
+            <p><span class="tulanmu"><a href="/">手机配件</a></span><span class="tutime">2015-02-15</span></p>
+          </li>
+          <li><a href="/" title="手机的16个惊人小秘密，据说99.999%的人都不知"><img src="../images/03.jpg"/><b>手机的16个惊人小秘密，据说...</b></a>
+            <p><span class="tulanmu"><a href="/">手机配件</a></span><span class="tutime">2015-02-15</span></p>
+          </li>
+          <li><a href="/"><img src="../images/06.jpg" /><b>住在手机里的朋友</b></a>
+            <p><span class="tulanmu"><a href="/">手机配件</a></span><span class="tutime">2015-02-15</span></p>
+          </li>
+          <li><a href="/"><img src="../images/04.jpg" /><b>教你怎样用欠费手机拨打电话</b></a>
+            <p><span class="tulanmu"><a href="/">手机配件</a></span><span class="tutime">2015-02-15</span></p>
+          </li>
+          <li><a href="/"><img src="../images/02.jpg" /><b>教你怎样用欠费手机拨打电话</b></a>
+            <p><span class="tulanmu"><a href="/">手机配件</a></span><span class="tutime">2015-02-15</span></p>
+          </li>
+          <li><a href="/" title="手机的16个惊人小秘密，据说99.999%的人都不知"><img src="../images/03.jpg" /><b>手机的16个惊人小秘密，据说...</b></a>
+            <p><span class="tulanmu"><a href="/" >手机配件</a></span><span class="tutime">2015-02-15</span></p>
+          </li>
+        </ul>
+      </div>
+      <div class="ph">
+        <h3 class="tit">点击排行</h3>
+        <ul class="rank">
+          <li><a href="/jstt/bj/2017-07-13/784.html" title="【心路历程】请不要在设计这条路上徘徊啦" target="_blank">【心路历程】请不要在设计这条路上徘徊啦</a></li>
+          <li><a href="/news/s/2016-05-20/751.html" title="IP要突破2000+了" target="_blank">IP要突破2000+了</a></li>
+          <li><a href="/jstt/web/2015-07-03/749.html" title="帝国cms首页、自定义页面如何实现分页" target="_blank">帝国cms首页、自定义页面如何实现分页</a></li>
+          <li><a href="/jstt/web/2015-02-25/745.html" title="【已评选】给我模板PSD源文件，我给你设计HTML！" target="_blank">【已评选】给我模板PSD源文件，我给你设计HTML！</a></li>
+          <li><a href="/jstt/bj/2015-02-14/744.html" title="【郑重申明】本站只提供静态模板下载！" target="_blank">【郑重申明】本站只提供静态模板下载！</a></li>
+          <li><a href="/news/s/2015-01-23/741.html" title="【孕期日记】生活本该如此" target="_blank">【孕期日记】生活本该如此</a></li>
+          <li><a href="/jstt/bj/2015-01-09/740.html" title="【匆匆那些年】总结个人博客经历的这四年…" target="_blank">【匆匆那些年】总结个人博客经历的这四年…</a></li>
+          <li><a href="/jstt/web/2015-01-01/739.html" title=" 2014年度优秀个人博客排名公布" target="_blank"> 2014年度优秀个人博客排名公布</a></li>
+          <li><a href="/jstt/web/2014-12-18/736.html" title="2014年度优秀个人博客评选活动" target="_blank">2014年度优秀个人博客评选活动</a></li>
+          <li><a href="/jstt/css3/2014-12-09/734.html" title="使用CSS3制作文字、图片倒影" target="_blank">使用CSS3制作文字、图片倒影</a></li>
+          <li><a href="/jstt/css3/2014-11-18/733.html" title="【分享】css3侧边栏导航不同方向划出效果" target="_blank">【分享】css3侧边栏导航不同方向划出效果</a></li>
+          <li><a href="/jstt/bj/2014-11-06/732.html" title="分享我的个人博客访问量如何做到IP从10到600的(图文)" target="_blank">分享我的个人博客访问量如何做到IP从10到600的(图文)</a></li>
+        </ul>
+      </div>
+      <div class="ad"> <img src="../images/03.jpg" /> </div>
+    </div>
+  </div>
+  <!-- container代码 结束 -->
+  <div class="jzend"></div>
+  <footer>
+    <div class="footer">
+      <div class="f_l">
+        <p>想了解更多请联系我，邮箱地址：<a href="http://www.yangqq.com">103293443@qq.com</a></p>
+      </div>
+      <div class="f_r textr">
+      </div>
+    </div>
+  </footer>
 </div>
 </body>
-<script>
-	
-	$(".serch_button_title").mouseover(function() {
-		$(".serch_button_title").css("background-color", "#F69");
-		$(this).css("cursor", "pointer");
-	});
-	$(".serch_button_title").mouseout(function() {
-		$(".serch_button_title").css("background-color", "#F09");
-	});
-
-	$(".index_a_1").mouseover(function() {
-		$(this).css("color", "#FFF");
-		$(this).css("cursor", "pointer");
-	});
-	$(".index_a_1").mouseout(function() {
-		$(this).css("color", "#006");
-	});
-
-	$(".index_a_2").mouseover(function() {
-		$(this).css("color", "#FFF");
-		$(this).css("cursor", "pointer");
-	});
-	$(".index_a_2").mouseout(function() {
-		$(this).css("color", "#006");
-	});
-
-	$(".index_a_3").mouseover(function() {
-		$(this).css("color", "#FFF");
-		$(this).css("cursor", "pointer");
-	});
-	$(".index_a_3").mouseout(function() {
-		$(this).css("color", "#006");
-	});
-
-	$(".index_a_4").mouseover(function() {
-		$(this).css("color", "#FFF");
-		$(this).css("cursor", "pointer");
-	});
-	$(".index_a_4").mouseout(function() {
-		$(this).css("color", "#006");
-	});
-
-	$(".index_a_5").mouseover(function() {
-		$(this).css("color", "#FFF");
-		$(this).css("cursor", "pointer");
-	});
-	$(".index_a_5").mouseout(function() {
-		$(this).css("color", "#006");
-	});
-
-	$(".index_a_6").mouseover(function() {
-		$(this).css("color", "#FFF");
-		$(this).css("cursor", "pointer");
-	});
-	$(".index_a_6").mouseout(function() {
-		$(this).css("color", "#006");
-	});
-
-	$("#search_id").click(function() {
-		searchBlogger($("#searchKey").val());
-	});
-
-	function searchBlogger(keyword){
-		$.ajax({
-			type:"post",
-			url:"/hello/query",
-			data:{"keyword":keyword},
-			type:"post",
-			dataType:"json",
-			success:function(data){
-				if(data.msg=='1'){
-					$(".kinds").hide();
-					$(".kinds_submit").hide();
-					$("#main").hide();
-					$(".recent_actions").hide();
-					$(".recent_actions_detail").show();
-					$(".search_result_title").show();
-					$("#key_word_show").html(keyword);
-					
-				}else{
-					 alert("未找到和“"+keyword+"”相關文章", "", function () {
-			            }, {type: 'success', confirmButtonText: 'OK'});
-				}
-			},
-			error:function(data){
-				alert("error"+data);
-			}
-			})
-	}
-	
-	
-	$("#search_id").mouseover(function() {
-		$(this).css("color", "#006");
-	});
-	$(".submit_button").mouseover(function() {
-		$(this).css("background-color", "#006");
-	});
-	$(".submit_button").mouseout(function() {
-		$(this).css("background-color", "#0FF");
-	});
-	$(".submit_button").click(function() {
-		if(checkNull()){
-	            confirm("确定提交博文吗?", "", function (isConfirm) {
-	                if (isConfirm) {
-	                	$.ajax({
-	            			type:"post",
-	            			url:"/blogger/save",
-	            			data:$("#form").serialize(),
-	            			type:"post",
-	            			dataType:"json",
-	            			success:function(data){
-	            				 alert("发表成功!点击查看文章详情", "", function () {
-	            					 window.location.href='/hello/detail?bloggerId='+data.id;
-	            		            }, {type: 'success', confirmButtonText: '查看'});
-	            			},
-	            			error:function(data){
-	            				alert("error"+data);
-	            			}
-	            			})
-	                } else {
-	                    //after click the cancel
-	                }
-	            }, {confirmButtonText: '确认', cancelButtonText: '取消', width: 400});
-
-		}
-	        });
-
-	function checkNull(){
-		if($("#title").val()==""){
-			 alert("请填写标题!", "", function () {
-	            }, {type: 'success', confirmButtonText: 'OK'});
-			 return;
-		}
-		if($("#content").val()==""){
-			 alert("请填写正文!", "", function () {
-	            }, {type: 'success', confirmButtonText: 'OK'});
-			 return;
-		}
-		if($("#keyWord").val()==""){
-			 alert("请填写关键字!", "", function () {
-	            }, {type: 'success', confirmButtonText: 'OK'});
-			 return;
-		}
-		if($("#type").val()=="-请选择-"){
-			 alert("请选择文章类型!", "", function () {
-	            }, {type: 'success', confirmButtonText: 'OK'});
-			 return;
-		}
-		if($("#whoseRead").val()=="-请选择-"){
-			 alert("请选择阅读权限!", "", function () {
-	            }, {type: 'success', confirmButtonText: 'OK'});
-			 return;
-		}
-		return true;
-	}
-</script>
 </html>
