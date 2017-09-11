@@ -2,15 +2,16 @@ package com.hj.pers.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-@RequestMapping(name=("/resource"))
+@Controller
+@RequestMapping("/resource")
 public class ResourceController {
 
-	@RequestMapping(name=("/"))
+	  @RequestMapping("/")
 	public String classes(HttpServletRequest request){
 		
-		return "/resource";
+		return "/resource/resource";
 		
 	}
 }

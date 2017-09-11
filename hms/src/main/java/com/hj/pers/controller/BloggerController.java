@@ -37,7 +37,7 @@ public class BloggerController {
 	    String home1(Model m) {
 	    	List<Blogger> bloggers = bs.queryRecentBlogger(5L);
 	    	m.addAttribute("bloggers", bloggers);
-	    	return"/blogger/index"; 
+	    	return"/blogger/blogger"; 
 	    } 
 	    
 	    /**博客内容
