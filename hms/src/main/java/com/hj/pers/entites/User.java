@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 @Table
 @Entity(name="user")
-public class User implements Serializable{
+public class User extends Base implements Serializable{
 	/**
 	 * 
 	 */

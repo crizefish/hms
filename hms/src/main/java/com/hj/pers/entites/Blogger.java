@@ -1,72 +1,64 @@
 package com.hj.pers.entites;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "blogger")
-public class Blogger {
-	 
-	  @Id
-	    @GeneratedValue(strategy=GenerationType.IDENTITY)
-	    @Column(name = "id", nullable = false)
-	    private Long id;
+public class Blogger extends Base{
+	 //id
+	@Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+	//标题
 	@Column(name="title")
 	private String title;
-	
+	//关键字
 	@Column(name="key_word")
 	private String keyWord;
-	
+	//语言类型
 	@Column(name="type")
 	private String type;
-	
+	//文章内容
 	@Column(name="content")
 	private String content;
-	
+	//谁可见
 	@Column(name="whose_read")
 	private String whoseRead;
+	//点赞数
+	@Column(name="top_Num")
+	private String topNum;
+	//阅读量
+	@Column(name="read_Num")
+	private String readNum;
+	//文章类型
+	@Column(name="article_Kind")
+	private String articleKind;
+	//标签
+	@Column(name="label")
+	private String label;
+	//相关标签
+	@Column(name="other_Url")
+	private String otherUrl;
 	
-	@Column(name="create_by")
-	private Long createBy;
-	
-	@Column(name="create_date")
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date createDate;
-	
-	public Blogger(String title, String keyWord, String type, String content, String whoseRead, Long createBy,
-			Date createDate) {
-		super();
-		this.title = title;
-		this.keyWord = keyWord;
-		this.type = type;
-		this.content = content;
-		this.whoseRead = whoseRead;
-		this.createBy = createBy;
-		this.createDate = createDate;
-	}
-	
+	//相关标签
+	@Column(name="out_line")
+	private String outLine;
 	
 	public Long getId() {
 		return id;
 	}
-
-
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
 	public Blogger() {
 		super();
 	}
-
 	
 	public String getTitle() {
 		return title;
@@ -98,22 +90,63 @@ public class Blogger {
 	public void setWhoseRead(String whoseRead) {
 		this.whoseRead = whoseRead;
 	}
-	public Long getCreateBy() {
-		return createBy;
-	}
-	public void setCreateBy(Long createBy) {
-		this.createBy = createBy;
-	}
-	public Date getCreateDate() {
-		return createDate;
-	}
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
+	
+
+
+	public String getTopNum() {
+		return topNum;
 	}
 
-	@Override
-	public String toString(){
-		return "id:" + this.getId()+",createDate:"+this.getCreateDate();
+
+	public void setTopNum(String topNum) {
+		this.topNum = topNum;
 	}
+
+
+	public String getReadNum() {
+		return readNum;
+	}
+
+
+	public void setReadNum(String readNum) {
+		this.readNum = readNum;
+	}
+
+
+	public String getArticleKind() {
+		return articleKind;
+	}
+
+
+	public void setArticleKind(String articleKind) {
+		this.articleKind = articleKind;
+	}
+
+
+	public String getLabel() {
+		return label;
+	}
+
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+
+	public String getOtherUrl() {
+		return otherUrl;
+	}
+
+
+	public void setOtherUrl(String otherUrl) {
+		this.otherUrl = otherUrl;
+	}
+	public String getOutLine() {
+		return outLine;
+	}
+	public void setOutLine(String outLine) {
+		this.outLine = outLine;
+	}
+	
 	
 }

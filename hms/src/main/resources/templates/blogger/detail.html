@@ -7,7 +7,10 @@
 <meta name="description" content="个人博客模板古典系列之――江南墨卷" />
 <link href="../css/base.css" rel="stylesheet" />
 <link href="../css/main.css" rel="stylesheet" />
-<script type="text/javascript" src="../js/juuery/1.9/jquery.js"></script>
+<script type="text/javascript" src="../js/jquery/1.9/jquery.js"></script>
+<script type="text/javascript" src="../ueditor/third-party/SyntaxHighlighter/shCore.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../ueditor/third-party/SyntaxHighlighter/shCoreDefault.css" />
 </head>
 <body>
 <div id="wrapper">
@@ -37,6 +40,7 @@
         </div>
       </nav>
       <script type="text/javascript">
+      SyntaxHighlighter.all();
 	// Navigation Menu
 	$(function() {
 		$(".menu ul").css({display: "none"}); // Opera Fix
@@ -48,6 +52,11 @@
 	});
 </script> 
     </div>
+    
+     	<div style="width: 1034px;height: 35px">
+  			 <a  class="input_submit" style="float: right;margin-right: 0px;transform:translateX(127px);width: 50px;color: white;"  th:href="@{'add?bloggerId='+${blogger.id}}" >&nbsp;编 辑</a>
+            <input name="button" class="input_submit" style="float: right;margin-right: 0px;transform:translateX(127px);width: 50px;"  value="  关 闭"  onclick="location='/blogger/'"/>
+  </div>
   </header>
   <div class="container">
     <div class="con_content">
@@ -61,7 +70,7 @@
           <p class="p_title"></p>
         </div>
         <ul class="about_content">
-          <p th:text="${blogger.content}"> </p>
+         <p th:utext="${blogger.content}"></p>
         </ul>
       </div>
     </div>

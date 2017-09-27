@@ -1,4 +1,4 @@
-@charset "gb2312";
+@charset "utf-8";
 .container {
 	background: #e5e5e5;
 	overflow: hidden;
@@ -194,7 +194,7 @@ a.readmore {
 .ph {
 	overflow: hidden
 }
-/*��ҳ�Ҳ��� 300*/
+
 .ad {
 	width: 300px;
 	overflow: hidden;
@@ -203,3 +203,7 @@ a.readmore {
 .ad img {
 	width: 300px;
 }
+.edui-default .edui-editor-iframeholder {  
+     height: 200px;  
+     background-color:rgba(0,0,0,0.1);  
+ } 

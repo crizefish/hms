@@ -1,6 +1,6 @@
-/* CSS Document */
+@charset "utf-8";
 html, body {
-	font-style:Î¢ÈíÑÅºÚ;
+	font-style:å¾®è½¯é›…é»‘;
 }
 body {
 	background-image: url(../image/blogger.jpg);
@@ -47,7 +47,7 @@ li {
 .video_color {
 	color:#93C;
 	font-size:25px;
-	font-style:ºÚÌå
+	font-style:é»‘ä½“
 }
 .user_color {
 	color: #393;

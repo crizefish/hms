@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -58,6 +59,24 @@ public class BloggerController {
 	    }
 	    
 	    
+	    /**博客添加
+	     * 
+	     * @param request
+	     * @param bloggerId
+	     * @param m
+	     * @return
+	     */
+	    @RequestMapping("/add")
+	    String add(HttpServletRequest request,Model model) {
+	    	String id = request.getParameter("bloggerId");
+	    	if(!StringUtils.isEmpty(id)){
+	    		Blogger blogger = bs.findOne(Long.parseLong(id));
+	    		model.addAttribute("blogger", blogger);
+	    	}else{
+	    		model.addAttribute("blogger", new Blogger());
+	    	}
+	    	return"/blogger/add"; 
+	    }
 	    
 	    /*************************************************A**J**A**X******************************************/
 	    
@@ -70,6 +89,7 @@ public class BloggerController {
 	    	Map< String,String> msg = new Hashtable<>();
 	    	blogger.setCreateDate(new Date());
 	    	try{
+	    		
 	    		blogger = bs.save(blogger);
 	    	}catch(Exception e){
 	    		logger.error(e.getMessage(),e);
