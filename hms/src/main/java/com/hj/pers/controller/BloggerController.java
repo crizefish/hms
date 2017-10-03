@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hj.pers.entites.Blogger;
+import com.hj.pers.entites.impl.Blogger;
 import com.hj.pers.service.BloggerService;
 @Controller
 @RequestMapping("/blogger")

@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hj.pers.entites.Blogger;
-import com.hj.pers.resp.BloggerReposity;
+import com.hj.pers.entites.impl.Blogger;
+import com.hj.pers.resp.impl.BloggerReposity;
 @Service
 @Transactional
 public class BloggerService {

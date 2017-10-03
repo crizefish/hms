@@ -9,7 +9,7 @@
 <link href="../css/main.css" rel="stylesheet" />
 <link href="../css/base.css" rel="stylesheet" />
 <link href="../css/index.css" rel="stylesheet" />
-<script type="text/javascript" src="../js/juuery/1.9/jquery.js"></script>
+<script type="text/javascript" src="../js/jquery/1.9/jquery.js"></script>
 </head>
 <body>
 <div id="wrapper">
@@ -52,18 +52,23 @@
 </script> 
     </div>
   </header>
+  
+    <div style="width: 1034px;height: 30px">
+            <input name="button" class="input_submit" style="float: right;margin-right: 0px;transform:translateX(127px);width: 50px;"  value="  添 加"  onclick="location='/resource/add'"/>
+  </div>
+  
     <div class="jztop"></div>
 <div class="container">
     <div class="bloglist f_l">
-    <ul style="width: 620px" >
+     <ul style="width: 620px" th:each="prod :${resources}">
     	<li>
-	     <h3><a href="/jstt/bj/2015-01-09/740.html">【时间处理工具】该类库包括了处理日期及时间的功能</a></h3>
+	     <h3><a th:href="@{'detail?resourceId='+${prod.id}}"  th:text="${prod.title}"></a></h3>
 	      <figure><img src="../images/img_1.jpg" alt="图片被狗狗给叼走了" /></figure>
 	      <ul>
-	        <p >功能简介：该类库包括了处理日期及时间的常见功能，个地方大师傅地方都都顺丰发法发送发送发送发放撒旦大神出差...</p>
-	        <a title="TODO"  target="_blank" class="readmore">下载源码&gt;&gt;</a>
+	        <p th:utext="${prod.outLine}+'...'"> </p>
+	        <a title="TODO" th:href="@{'detail?resourceId='+${prod.id}}"  target="_blank" class="readmore">查看详情&gt;&gt;</a>
 	      </ul>
-	      <p class="dateview"><span></span>作者：<span ></span></p>
+	      <p class="dateview"><span th:text="${prod.createDate}"></span>作者：<span th:text="${prod.createBy}"></span></p>
    		</li>
     </ul>
       
