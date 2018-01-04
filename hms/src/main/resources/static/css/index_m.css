@@ -1,0 +1,113 @@
+@CHARSET "UTF-8";
+/* CSS Document */
+html, body {
+	font-style: "微软雅黑"
+}
+body {
+ 	background-image: url(../images/footside.jpg);
+ 	background-size: cover;
+	width: 100%;
+	;
+}
+ul {
+	list-style-type: none;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+li {
+	color:#009;
+	font-size: 60px;
+	float: left;
+	width: 25%
+}
+.search_box {
+	width: 600px;
+	height: 30px;
+	margin-left: 400px;
+	margin-top: 80px;
+}
+.search_t {
+	width: 1000px;
+	margin-left: 190px;
+}
+.search_logo {
+	width: 40px;
+	height: 34px;
+	float: left;
+}
+.search_image {
+	width: 27px;
+	height: 27px;
+	margin-left: 2px;
+	margin-top: 1px;
+	filter: alpha(opacity=80);
+	-moz-opacity: 0.8;
+	width: auto !important;
+}
+.search_input {
+	width: 410px;
+	height: 27.4px;
+	background-color: transparent;
+	border-color：#FFF;
+	border:hidden锛�float:right;
+	color:#000;
+}
+
+.search_button {
+	float: right;
+}
+.serch_button_title {
+	width: 150px;
+	height: 32px;
+	background-color:rgba(128, 128, 128, 0.34);
+	font-size-adjust: inherit;
+	font-size: 16px;
+	border: hidden;
+}
+table {
+	border-right: 1px solid #804040;
+	border-bottom: 1px solid #804040;
+	border-collapse: collapse;
+}
+table td {
+	border-left: 1px solid #804040;
+	border-top: 1px solid #804040;
+}
+.recent_actions {
+	width: 1000px;
+	text-align: center;
+	margin: 0 auto
+}
+.recent_action_word {
+	width: 600px;
+	color: #FFF;
+	font-size: 25px;
+	float: left;
+}
+.recent_action_status {
+	width: 1000px;
+	color: #000;
+	font-size: 20px;
+}
+.blank {
+	width: 1000px;
+	height: 50px;
+}
+.singel_status {
+	width: 1000px;
+	height: 50px;
+}
+.video_color {
+	color: #FFF;
+}
+.user_color {
+	color: #FFF;
+}
+.down_words {
+	font-size: 14px;
+	width: 400px;
+	text-align: center;
+	margin: 0 auto;
+	color: #FFF;
+}

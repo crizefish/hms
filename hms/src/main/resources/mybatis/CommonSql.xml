@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hj.pers.mapper.CommonMapper">
+    <select id="findTopCommon" parameterType="Integer" resultType="com.hj.pers.pojo.Common">
+        select * from (
+			(SELECT r.title ,r.id,r.create_date as date ,r.create_by as authorId,"resource" as type  FROM resource r ORDER BY r.top_num limit 2)
+			UNION All
+			(SELECT b.title ,b.id,b.create_date as date ,b.create_by as authorId, "blogger" as type FROM blogger b  ORDER BY b.top_num limit 2)
+			UNION All
+			(SELECT n.title ,n.id,n.create_date as date ,n.create_by as authorId, "note" as type FROM note n  ORDER BY n.top_num limit 2)
+			) as Common
+    </select>
+    
+    <select id="findHotCommon" parameterType="Integer" resultType="com.hj.pers.pojo.Common">
+       select * from (
+			(SELECT r.title ,r.id,r.create_date as date ,r.create_by as authorId,"resource" as type  FROM resource r ORDER BY r.read_num limit 2)
+			UNION All
+			(SELECT b.title ,b.id,b.create_date as date ,b.create_by as authorId, "blogger" as type FROM blogger b  ORDER BY b.read_num limit 2)
+			UNION All
+			(SELECT n.title ,n.id,n.create_date as date ,n.create_by as authorId, "note" as type FROM note n  ORDER BY n.read_num limit 2)
+			) as Common
+    </select>
+    
+
+</mapper>

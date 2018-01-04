@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>博客详情</title>
+<meta name="keywords" content="个人博客模板古典系列之――江南墨卷" />
+<meta name="description" content="个人博客模板古典系列之――江南墨卷" />
+<link href="../css/base.css" rel="stylesheet" />
+<link href="../css/main.css" rel="stylesheet" />
+<script type="text/javascript" src="../js/jquery/1.9/jquery.js"></script>
+<script type="text/javascript" src="../ueditor/third-party/SyntaxHighlighter/shCore.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../ueditor/third-party/SyntaxHighlighter/shCoreDefault.css" />
+</head>
+<body>
+<div id="wrapper">
+  <header>
+    <div class="headtop"></div>
+    <div class="contenttop">
+      <div class="logo f_l" th:text="${resource.type+'—'+resource.title}"></div>
+      <div class="search f_r">
+        <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
+          <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text" />
+          <input name="show" value="title" type="hidden" />
+          <input name="tempid" value="1" type="hidden" />
+          <input name="tbname" value="news" type="hidden" />
+          <input name="Submit" class="input_submit" value="搜索" type="submit" />
+        </form>
+      </div>
+      <div class="blank"></div>
+      <nav>
+        <div  class="navigation">
+          <ul class="menu">
+            <li><a th:href="@{'/news/'}">时事新闻</a></li>
+            <li><a  th:href="@{'/blogger/'}" >技术博客</a> </li>
+            <li><a style="color: silver;" th:href="@{'/note/'}" >Java类库</a></li>
+            <li><a  th:href="@{'/resource/'}" >杂谈随记</a> </li>
+            <li><a th:href="@{'/message/'}" >给我留言</a> </li>
+          </ul>
+        </div>
+      </nav>
+      <script type="text/javascript">
+      SyntaxHighlighter.all();
+	// Navigation Menu
+	$(function() {
+		$(".menu ul").css({display: "none"}); // Opera Fix
+		$(".menu li").hover(function(){
+			$(this).find('ul:first').css({visibility: "visible",display: "none"}).slideDown("normal");
+		},function(){
+			$(this).find('ul:first').css({visibility: "hidden"});
+		});
+	});
+</script> 
+    </div>
+    
+     	<div style="width: 1034px;height: 35px">
+  			 <a  class="input_submit" style="float: right;margin-right: 0px;transform:translateX(127px);width: 50px;color: white;"  th:href="@{'add?resourceId='+${resource.id}}" >&nbsp;编 辑</a>
+            <input name="button" class="input_submit" style="float: right;margin-right: 0px;transform:translateX(127px);width: 50px;"  value="  关 闭"  onclick="location='/resource/'"/>
+  </div>
+  </header>
+  <div class="container">
+    <div class="con_content">
+      <div class="about_box">
+        <h2 class="nh1">
+        <span>您现在的位置是：<a href="/" target="_blank">网站首页>></a><a th:href="@{'/resource/'}"  target="_blank">技术博客</a></span>
+        
+        <b th:text="${'创建时间'+resource.createDate}"></b></h2>
+        <div class="f_box">
+          <p class="a_title" th:text="${resource.title}"></p>
+          <p class="p_title"></p>
+        </div>
+        <ul class="about_content">
+         <p th:utext="${resource.content}"></p>
+        </ul>
+      </div>
+    </div>
+    <div class="blank"></div>
+  </div>
+  
+  <footer>
+    <div class="footer">
+      <div class="f_l">
+        <p>想了解更多请联系我，邮箱地址：<a href="http://www.yangqq.com">103293443@qq.com</a></p>
+      </div>
+      <div class="f_r textr">
+        <p></p>
+      </div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
