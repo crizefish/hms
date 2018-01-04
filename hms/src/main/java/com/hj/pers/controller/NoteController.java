@@ -66,7 +66,7 @@ public class NoteController {
 	     * @param m
 	     * @return
 	     */
-	    @RequestMapping("/add")
+	    @RequestMapping(value="/add", produces = "application/json; charset=utf-8")
 	    String add(HttpServletRequest request,Model model) {
 	    	String id = request.getParameter("noteId");
 	    	if(!StringUtils.isEmpty(id)){
@@ -83,7 +83,7 @@ public class NoteController {
 	    /**保存博客
 	     * 
 	     */
-	    @RequestMapping("/save")
+	    @RequestMapping(value="/save", produces = "application/json; charset=utf-8")
 	    @ResponseBody
 	    public Map<String, String> save(@ModelAttribute Note note,HttpServletRequest request) {
 	    	Map< String,String> msg = new Hashtable<>();

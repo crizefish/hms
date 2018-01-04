@@ -29,7 +29,7 @@
       <nav>
         <div class="navigation">
            <ul class="menu">
-            <li><a th:href="@{'/index/'}" >网址首页</a></li>
+             <li><a th:href="@{'/news/'}">时事新闻</a></li>
             <li><a style="color: silver;" th:href="@{'/blogger/'}" >技术博客</a> </li>
             <li><a th:href="@{'/resource/'}" >Java类库</a></li>
             <li><a th:href="@{'/note/'}" >杂谈随记</a> </li>
@@ -85,34 +85,17 @@
       
       <div class="tuwen">
         <h3 class="tit">文章推荐</h3>
-        <ul>
-          <li><a href="/"><img src="../images/01.jpg" /><b>住在手机里的朋友</b></a>
-            <p><span class="tulanmu"><a href="/">手机配件</a></span><span class="tutime">2015-02-15</span></p>
-          </li>
-          <li><a href="/"><img src="../images/02.jpg" /><b>教你怎样用欠费手机拨打电话</b></a>
-            <p><span class="tulanmu"><a href="/">手机配件</a></span><span class="tutime">2015-02-15</span></p>
-          </li>
-          <li><a href="/" title="手机的16个惊人小秘密，据说99.999%的人都不知"><img src="../images/03.jpg"/><b>手机的16个惊人小秘密，据说...</b></a>
-            <p><span class="tulanmu"><a href="/">手机配件</a></span><span class="tutime">2015-02-15</span></p>
-          </li>
-          <li><a href="/"><img src="../images/06.jpg" /><b>住在手机里的朋友</b></a>
-            <p><span class="tulanmu"><a href="/">手机配件</a></span><span class="tutime">2015-02-15</span></p>
-          </li>
-          <li><a href="/"><img src="../images/04.jpg" /><b>教你怎样用欠费手机拨打电话</b></a>
-            <p><span class="tulanmu"><a href="/">手机配件</a></span><span class="tutime">2015-02-15</span></p>
-          </li>
-          <li><a href="/"><img src="../images/02.jpg" /><b>教你怎样用欠费手机拨打电话</b></a>
-            <p><span class="tulanmu"><a href="/">手机配件</a></span><span class="tutime">2015-02-15</span></p>
-          </li>
-          <li><a href="/" title="手机的16个惊人小秘密，据说99.999%的人都不知"><img src="../images/03.jpg" /><b>手机的16个惊人小秘密，据说...</b></a>
-            <p><span class="tulanmu"><a href="/" >手机配件</a></span><span class="tutime">2015-02-15</span></p>
+        
+        <ul th:each="prod :${top}">
+          <li><a th:href="@{'/'+${prod.type}+'/detail?'+${prod.type}+'Id='+${prod.id}}"  th:text="${prod.title}"><img src="../images/01.jpg" /><b>住在手机里的朋友</b></a>
+            <p><span class="tulanmu"><a th:href="@{'/'+${prod.type}+'/'}"  th:text="${prod.type}">手机配件</a></span><span class="tutime" th:text="${prod.date}">2015-02-15</span></p>
           </li>
         </ul>
       </div>
       <div class="ph">
         <h3 class="tit">点击排行</h3>
         <ul class="rank" >
-          <li th:each="prod :${bloggers}"><a th:href="@{'detail?bloggerId='+${prod.id}}" th:text="${prod.title}"  th:title="${prod.title}" th:target="${prod.title}" ></a></li>
+          <li th:each="prod :${hot}"><a th:href="@{'detail?bloggerId='+${prod.id}}" th:text="${prod.title}"  th:title="${prod.title}" th:target="${prod.title}" ></a></li>
         </ul>
       </div>
       <div class="tit01">

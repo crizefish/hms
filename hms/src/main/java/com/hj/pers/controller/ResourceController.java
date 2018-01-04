@@ -71,7 +71,7 @@ public class ResourceController {
 	     * @param m
 	     * @return
 	     */
-	    @RequestMapping("/add")
+	    @RequestMapping(value="/add", produces = "application/json; charset=utf-8")
 	    String add(HttpServletRequest request,Model model) {
 	    	String id = request.getParameter("resourceId");
 	    	if(!StringUtils.isEmpty(id)){
@@ -88,7 +88,7 @@ public class ResourceController {
 	    /**保存博客
 	     * 
 	     */
-	    @RequestMapping("/save")
+	    @RequestMapping(value="/save", produces = "application/json; charset=utf-8")
 	    @ResponseBody
 	    public Map<String, String> save(@ModelAttribute Resource resource,HttpServletRequest request) {
 	    	Map< String,String> msg = new Hashtable<>();
@@ -135,7 +135,7 @@ public class ResourceController {
 	    @ResponseBody
 	    public Map<String, String> upload(MultipartFile file) {
 	    	Map< String,String> msg = new Hashtable<>();
-	    	String name = file.getName();
+//	    	String name = file.getName();
 	    	File filedir = new File("D:\\WWW\\qq.txt");
 	    	FileOutputStream out = null;
 			try {

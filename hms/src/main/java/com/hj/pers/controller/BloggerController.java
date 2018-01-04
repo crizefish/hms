@@ -66,7 +66,7 @@ public class BloggerController {
 	     * @param m
 	     * @return
 	     */
-	    @RequestMapping("/add")
+	    @RequestMapping(value="/add", produces = "application/json; charset=utf-8")
 	    String add(HttpServletRequest request,Model model) {
 	    	String id = request.getParameter("bloggerId");
 	    	if(!StringUtils.isEmpty(id)){
@@ -83,7 +83,7 @@ public class BloggerController {
 	    /**保存博客
 	     * 
 	     */
-	    @RequestMapping("/save")
+	    @RequestMapping(value="/save", produces = "application/json; charset=utf-8")
 	    @ResponseBody
 	    public Map<String, String> save(@ModelAttribute Blogger blogger,HttpServletRequest request) {
 	    	Map< String,String> msg = new Hashtable<>();
