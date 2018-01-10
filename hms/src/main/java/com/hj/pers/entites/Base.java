@@ -4,8 +4,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.hj.pers.entites.impl.User;
+import com.hj.pers.service.UserService;
 
 /**基础实体
  * 
@@ -14,6 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @MappedSuperclass
 public class Base {
+	
 		//创建人id
 		@Column(name="create_by")
 		private Long createBy;
@@ -27,6 +33,10 @@ public class Base {
 		@Column(name="update_date")
 		@DateTimeFormat(pattern="yyyy-MM-dd")
 		private Date updateDate;
+		
+		@Column(name="author")
+		private String author;
+		
 		public Long getCreateBy() {
 			return createBy;
 		}
@@ -44,6 +54,12 @@ public class Base {
 		}
 		public void setUpdateDate(Date updateDate) {
 			this.updateDate = updateDate;
+		}
+		public String getAuthor() {
+				return author;
+		}
+		public void setAuthor(String author) {
+			this.author = author;
 		}
 		
 }

@@ -155,6 +155,4 @@ public class Blogger extends Base{
 	public void setOutLine(String outLine) {
 		this.outLine = outLine;
 	}
-	
-	
 }

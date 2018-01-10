@@ -9,11 +9,15 @@ import com.hj.pers.entites.impl.Blogger;
 import com.hj.pers.resp.impl.BloggerReposity;
 @Service
 public class BloggerService {
-@Autowired 
-BloggerReposity bs;
+
+	@Autowired 
+private BloggerReposity bs;
+@Autowired
+private UserService us;
 
 	public Blogger save(Blogger blogger) {
-		return bs.save(blogger);
+		Blogger base = (Blogger) us.setCommonInfo(blogger);
+		return bs.save(base);
 	}
 
 	public Blogger findOne(Long id) {

@@ -24,7 +24,6 @@
 	margin: auto;
 	height: 14px;
 }
-/*����*/
 .bloglist {
 	width: 620px;
 	overflow: hidden;
@@ -171,7 +170,6 @@ a.readmore {
 .tuwen li:hover {
 	background: #f4f3f3
 }
-/*����*/
 .rank li {
 	height: 25px;
 	line-height: 25px;

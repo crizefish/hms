@@ -34,7 +34,7 @@ public class ResourceController {
 	private String SUCCESS = "1";
 	private String FAIL = "0";
 		
-		/**博客首页
+		/**资源首页
 		 * 
 		 * @param m
 		 * @return
@@ -46,7 +46,7 @@ public class ResourceController {
 	    	return"/resource/resource"; 
 	    } 
 	    
-	    /**博客内容
+	    /**资源内容
 	     * 
 	     * @param request
 	     * @param resourceId
@@ -64,7 +64,7 @@ public class ResourceController {
 	    }
 	    
 	    
-	    /**博客添加
+	    /**资源添加
 	     * 
 	     * @param request
 	     * @param resourceId
@@ -85,7 +85,7 @@ public class ResourceController {
 	    
 	    /*************************************************A**J**A**X******************************************/
 	    
-	    /**保存博客
+	    /**保存资源
 	     * 
 	     */
 	    @RequestMapping(value="/save", produces = "application/json; charset=utf-8")

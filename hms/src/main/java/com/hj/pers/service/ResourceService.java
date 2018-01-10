@@ -12,20 +12,23 @@ import com.hj.pers.resp.impl.ResourceReposity;
 @Transactional
 public class ResourceService {
 @Autowired 
-ResourceReposity bs;
+ResourceReposity rr;
+@Autowired
+private UserService us;
 
 	public Resource save(Resource resource) {
-		return bs.save(resource);
+		resource = (Resource)us.setCommonInfo(resource);
+		return rr.save(resource);
 	}
 
 	public Resource findOne(Long id) {
-		return bs.findOne(id);
+		return rr.findOne(id);
 	}
 	
 	public List<Resource> queryRecentResource(Long count) {
-		return bs.queryRecentResource(count).size()>0?bs.queryRecentResource(count):null;
+		return rr.queryRecentResource(count).size()>0?rr.queryRecentResource(count):null;
 	}
 	public List<Resource> queryResourceByWord(String keyword) {
-		return bs.queryResourceByKeyword(keyword);
+		return rr.queryResourceByKeyword(keyword);
 	}
 }

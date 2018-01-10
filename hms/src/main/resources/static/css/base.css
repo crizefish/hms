@@ -38,7 +38,7 @@ a:hover {
 .blank {
 	height: 8px;
 	overflow: hidden;
-	width: 100%;
+	width: 600px;
 	margin: auto;
 	clear: both
 }
@@ -207,3 +207,15 @@ footer {
 #box{float:left;position:relative;width:295px;}
 .div1{}
 .div2{position:fixed;_position:absolute;top:3px;z-index:295;}
+.user{
+	float:right;
+	
+}
+.user_a{
+font-weight: 600;
+    text-decoration: none;
+    color: #000000;
+}
+.user ul li{
+	    float: right;
+}

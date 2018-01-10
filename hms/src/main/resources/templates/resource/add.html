@@ -15,20 +15,35 @@
 <body>
 	<div id="wrapper">
 		<header>
-			<div class="headtop"></div>
-			<div class="contenttop">
-				<div class="search f_r">
-					<form action="/e/search/index.php" method="post" name="searchform"
-						id="searchform">
-						<input name="keyboard" id="keyboard" class="input_text"
-							value="请输入关键字" style="color: rgb(153, 153, 153);"
-							onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}"
-							onblur="if(value==''){this.style.color='#999';value='请输入关键字'}"
-							type="text" /> <input name="Submit" class="input_submit"
-							value="搜索" type="submit" />
-					</form>
-				</div>
-				<div class="blank"></div>
+			  <div class="headtop"></div>
+    <div class="contenttop">
+     <div class="blank"></div>
+    <div class="user" th:if="${session.SPRING_SECURITY_CONTEXT}==null">
+    				 <ul> 
+                     <li>
+                      欢迎您，
+	                     <a class="user_a" href="/login">请：登录</a>|
+	                     <a class="user_a" href="/user/register">注册</a>
+                     </li>   
+                    </ul>  
+</div> 
+    <div class="user" th:if="${session.SPRING_SECURITY_CONTEXT}!=null">
+    				 <ul> 
+                     <li>
+                      欢迎您，
+	                     <a class="user_a" th:text="${session.SPRING_SECURITY_CONTEXT.authentication.principal.username} "></a>&nbsp;|
+	                     <a class="user_a" href="/logout">注销</a>
+                     </li>   
+                    </ul>  
+</div> 
+ <div class="blank"></div>
+      <div class="search f_r">
+        <form action="/other/search" method="post" name="searchform" id="searchform">
+          <input name="keyWord" id="keyWord" class="input_text" value="请输入关键字"  style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text" />
+          <input name="Submit" class="input_submit" value="搜索" type="button" id="search_button"/>
+        </form>
+      </div>
+      <div class="blank"></div>
 				<nav>
 					<div class="navigation">
 						<ul class="menu">
@@ -53,6 +68,15 @@
 			$(this).find('ul:first').css({visibility: "hidden"});
 		});
 	});
+	
+	$("#search_button").click(function sub(){
+		var keyWord = $("#keyWord").val();
+		if(keyWord=="请输入关键字" || keyWord == ""){
+			window.location.href="/other/index";
+		}else{
+			window.location.href="/other/search"+"?keyWord="+keyWord;
+		}
+	});
 </script>
 			</div>
 		</header>
@@ -65,7 +89,14 @@
 				th:attr="value=${resource.outLine}" />
 
 			<div style="width: 1034px; height: 35px; margin-left: 200px">
-				类库类型：<select class="input_text" >
+				类库名称：<input name="title" id="title" class="input_text" value="请输入名称"
+					style="color: rgb(153, 153, 153); width: 430px"
+					onfocus="if(value=='请输入名称'){this.style.color='#000';value=''}"
+					onblur="if(value==''){this.style.color='#999';value='请输入名称'}"
+					type="text" th:attr="value=${resource.title}" />
+			</div>
+			<div style="width: 1034px; height: 35px; margin-left: 200px">
+				类库类型：<select th:attr="value=${resource.type}" class="input_text" >
 					<option>文件处理</option>
 					<option>数据处理</option>
 					<option>工具类</option>
@@ -89,7 +120,7 @@
 					style="color: rgb(153, 153, 153); width: 600px;height: 290px"
 					onfocus="if(value=='请输入类库描述'){this.style.color='#000';value=''}"
 					onblur="if(value==''){this.style.color='#999';value='请输入类库描述'}"
-					type="text" name="title" th:attr="value=${resource.title}" /> 
+					type="text" name="desc" th:attr="value=${resource.desc}" /> 
 			</div>
 			<div style="width: 1034px; height: 35px; margin-left: 200px">
 				请选择java类库形式类型：
@@ -100,18 +131,22 @@
 			</div>
 			<div style="width: 1034px; height: 35px; margin-left: 200px" id="class_div">
 					请录入java源码 ：
+								<input type="hidden" name="content" id="content" />
+					
 			</div>
+			
 			<div style="width: 1034px; height: 50px; margin-left: 200px" id="file_div" >
+			<div>
 					请选择jar包（或war包等）文件 ：
-					</div>
-			<div style="width: 1034px; height: 35px; margin-left: 200px">
-					  <input type="file" id="fileUpload" name="file" style="color: transparent;"/><br/>
-			</div>
-			<div style="width: 1034px; height: 35px; margin-left: 200px" >
+				</div>
+								<div class="blank"></div>
+				
+			<div style="width: 1034px; height: 35px;">
+					  <input type="file" id="fileUpload" name="file" style="color: transparent;"/>
 					  <a id="fileName" color="blue" display="none"></a>
 					  <a id="delete" color="red" display="none">删除</a>
 			</div>
-			<input type="hidden" name="content" id="content" />
+					</div>
 		</form>
 		<div class="jztop"></div>
 		<div class="container">

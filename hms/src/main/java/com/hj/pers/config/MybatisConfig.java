@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
 @Configuration
-@EnableTransactionManagement
 @MapperScan("com.hj.pers.mapper")
 public class MybatisConfig implements TransactionManagementConfigurer {
 	 @Autowired

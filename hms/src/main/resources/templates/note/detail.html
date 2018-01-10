@@ -15,16 +15,32 @@
 <body>
 <div id="wrapper">
   <header>
-    <div class="headtop"></div>
+      <div class="headtop"></div>
     <div class="contenttop">
-      <div class="logo f_l" th:text="${note.type+'—'+note.title}"></div>
+     <div class="blank"></div>
+    <div class="user" th:if="${session.SPRING_SECURITY_CONTEXT}==null">
+    				 <ul> 
+                     <li>
+                      欢迎您，
+	                     <a class="user_a" href="/login">请：登录</a>|
+	                     <a class="user_a" href="/user/register">注册</a>
+                     </li>   
+                    </ul>  
+</div> 
+    <div class="user" th:if="${session.SPRING_SECURITY_CONTEXT}!=null">
+    				 <ul> 
+                     <li>
+                      欢迎您，
+	                     <a class="user_a" th:text="${session.SPRING_SECURITY_CONTEXT.authentication.principal.username} "></a>&nbsp;|
+	                     <a class="user_a" href="/logout">注销</a>
+                     </li>   
+                    </ul>  
+</div> 
+ <div class="blank"></div>
       <div class="search f_r">
-        <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
-          <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text" />
-          <input name="show" value="title" type="hidden" />
-          <input name="tempid" value="1" type="hidden" />
-          <input name="tbname" value="news" type="hidden" />
-          <input name="Submit" class="input_submit" value="搜索" type="submit" />
+        <form action="/other/search" method="post" name="searchform" id="searchform">
+          <input name="keyWord" id="keyWord" class="input_text" value="请输入关键字"  style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text" />
+          <input name="Submit" class="input_submit" value="搜索" type="button" id="search_button"/>
         </form>
       </div>
       <div class="blank"></div>
@@ -50,11 +66,20 @@
 			$(this).find('ul:first').css({visibility: "hidden"});
 		});
 	});
+	
+	$("#search_button").click(function sub(){
+		var keyWord = $("#keyWord").val();
+		if(keyWord=="请输入关键字" || keyWord == ""){
+			window.location.href="/other/index";
+		}else{
+			window.location.href="/other/search"+"?keyWord="+keyWord;
+		}
+	});
 </script> 
     </div>
     
      	<div style="width: 1034px;height: 35px">
-  			 <a  class="input_submit" style="float: right;margin-right: 0px;transform:translateX(127px);width: 50px;color: white;"  th:href="@{'add?noteId='+${note.id}}" >&nbsp;编 辑</a>
+  			 <a th:if="${session.SPRING_SECURITY_CONTEXT}!=null" class="input_submit" style="float: right;margin-right: 0px;transform:translateX(127px);width: 50px;color: white;"  th:href="@{'add?noteId='+${note.id}}" >&nbsp;编 辑</a>
             <input name="button" class="input_submit" style="float: right;margin-right: 0px;transform:translateX(127px);width: 50px;"  value="  关 闭"  onclick="location='/note/'"/>
   </div>
   </header>

@@ -1,4 +1,4 @@
-package com.hj.pers.entites;
+package com.hj.pers.pojo.news;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 

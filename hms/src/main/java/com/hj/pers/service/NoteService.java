@@ -13,8 +13,11 @@ import com.hj.pers.resp.impl.NoteReposity;
 public class NoteService {
 @Autowired 
 NoteReposity bs;
+@Autowired
+private UserService us;
 
 	public Note save(Note note) {
+		note = (Note)us.setCommonInfo(note);
 		return bs.save(note);
 	}
 

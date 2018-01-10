@@ -87,9 +87,7 @@ public class NoteController {
 	    @ResponseBody
 	    public Map<String, String> save(@ModelAttribute Note note,HttpServletRequest request) {
 	    	Map< String,String> msg = new Hashtable<>();
-	    	note.setCreateDate(new Date());
 	    	try{
-	    		
 	    		note = bs.save(note);
 	    	}catch(Exception e){
 	    		logger.error(e.getMessage(),e);

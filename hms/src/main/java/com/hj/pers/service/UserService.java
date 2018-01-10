@@ -1,5 +1,6 @@
 package com.hj.pers.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -15,27 +16,30 @@ import org.springframework.stereotype.Service;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.util.StringUtils;
 
+import com.hj.pers.entites.Base;
 import com.hj.pers.entites.impl.User;
 import com.hj.pers.mapper.CommonMapper;
-import com.hj.pers.pojo.Common;
+import com.hj.pers.pojo.article.Common;
 import com.hj.pers.resp.impl.UserRepository;
 
 @Service
-@ActiveProfiles("163")
 public class UserService implements UserDetailsService {
 	@Autowired
 	private UserRepository ur;
 	@Autowired
 	private CommonMapper cm;
-
 	@Autowired
 	private JavaMailSender mailSender; // 自动注入的Bean
-
 	@Value("${spring.mail.username}")
 	private String Sender; // 读取配置文件中的参数
-
+	
+	
 	public void save(User u) {
 		ur.saveAndFlush(u);
+	}
+	
+	public User findOne(Long id) {
+		return ur.findOne(id);
 	}
 
 	@Override
@@ -76,13 +80,21 @@ public class UserService implements UserDetailsService {
 	}
 	
 	public List<Common> findTopCommon(){
-		return cm.findTopCommon();
+		return cm.findCommon("top_num");
 	}
 	public List<Common> findHotCommon(){
-		return cm.findHotCommon();
+		return cm.findCommon("read_num");
 	}
 	public User findUserInfo() throws ClassCastException{
 			return (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	}
+	
+	public Base setCommonInfo(Base b) throws ClassCastException{
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username = user.getUsername();
+		b.setCreateDate(new Date());
+		b.setAuthor(username);
+		return b;
 	}
 	
 }

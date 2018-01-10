@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<title>搜索</title>
+<link rel="stylesheet" type="text/css" href="../css/H-ui.reset.css" />
+<link rel="stylesheet" type="text/css" href="../css/index_m.css" />
+<script src="../js/jquery/3.0/jquery-3.0.0.js"></script>
+<script src="../js/jquery/3.0/jquery-3.0.0.min.js"></script>
+<script src="../js/index.js"></script>
+</head>
+<body>
+<div class="blank"></div>
+
+
+	<div class="search_box">
+		<dl>
+			<dd class="search_t">
+				<img src="../images/hujian.png" width="500px" height="50px" alt="" />
+			</dd>
+		</dl>
+		<ul>
+			<li class="search_logo"><img class="search_image"
+				src="../images/seach_log.png" /></li>
+			<li class="search_input">
+			<input type="text" name="keyWord" id="keyWord" value="请输入关键字"  style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字'}"
+				class="search_input" placeholder="请输入关键字" /></li>
+			<li class="search_word" style="color:black;"><input type="button" name="search_button" id="search_button" class="serch_button_title"  value="全站搜索"  /></li>
+		</ul>
+	</div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div class="down_words" style="color:black;">个人网站，非商业用途 ©2017 hujian
+		请联系我1032936569@qq.com</div>
+	<script type="text/jscript">
+		
+	 $(".serch_button_title").mouseover(function(){
+  $(".serch_button_title").css("background-color","#999");$(this).css("cursor","pointer");
+});
+      	 $(".serch_button_title").mouseout(function(){
+  $(".serch_button_title").css("background-color","rgba(128, 128, 128, 0.34)");
+}); 
+ 
+      	$("#search_button").click(function sub(){
+    		var keyWord = $("#keyWord").val();
+    		if(keyWord=="请输入关键字" || keyWord == ""){
+    			window.location.href="/other/index";
+    		}else{
+    			window.location.href="/other/search"+"?keyWord="+keyWord;
+    		}
+    	});   
+	</script>
+</body>
+</html>

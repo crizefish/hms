@@ -13,8 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
-import com.hj.pers.entites.News;
-import com.hj.pers.entites.NewsRequest;
+import com.hj.pers.pojo.news.News;
+import com.hj.pers.pojo.news.NewsRequest;
 @Controller
 @RequestMapping("/news")
 public class NewsController {

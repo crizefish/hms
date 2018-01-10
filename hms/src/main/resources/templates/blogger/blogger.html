@@ -6,23 +6,51 @@
 <link href="../css/base.css" rel="stylesheet" />
 <link href="../css/index.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/jquery/1.9/jquery.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<style type="text/css">
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
+</style>
 </head>
 <body>
 <!-- <div class="topnav">
 </div> -->
 <div id="wrapper">
-  <header>
+ <header>
     <div class="headtop"></div>
     <div class="contenttop">
-<!--       <div class="logo f_l">技术博客篇</div>
- -->      <div class="search f_r">
-        <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
-          <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text" />
-          <input name="show" value="title" type="hidden" />
-          <input name="tempid" value="1" type="hidden" />
-          <input name="tbname" value="news" type="hidden" />
-          <input name="Submit" class="input_submit" value="搜索" type="submit" />
+     <div class="blank"></div>
+    <div class="user" th:if="${session.SPRING_SECURITY_CONTEXT}==null">
+    				 <ul> 
+                     <li>
+                      欢迎您，
+	                     <a class="user_a" href="/login">请：登录</a>|
+	                     <a class="user_a" href="/user/register">注册</a>
+	                     <i class="fa"></i>
+                     </li>   
+                    </ul>  
+</div> 
+    <div class="user" th:if="${session.SPRING_SECURITY_CONTEXT}!=null">
+    				 <ul> 
+                     <li>
+                      欢迎您，
+	                     <a class="user_a" th:text="${session.SPRING_SECURITY_CONTEXT.authentication.principal.username} "></a>&nbsp;|
+	                     <a class="user_a" href="/logout">注销</a>
+                     </li>   
+                    </ul>  
+</div> 
+ <div class="blank"></div>
+      <div class="search f_r">
+        <form action="/other/search" method="post" name="searchform" id="searchform">
+          <input name="keyWord" id="keyWord" class="input_text" value="请输入关键字"  style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text" />
+          <input name="Submit" class="input_submit" value="搜索" type="button" id="search_button"/>
         </form>
       </div>
       <div class="blank"></div>
@@ -47,12 +75,20 @@
 			$(this).find('ul:first').css({visibility: "hidden"});
 		});
 	});
+	
+	$("#search_button").click(function sub(){
+		var keyWord = $("#keyWord").val();
+		if(keyWord=="请输入关键字" || keyWord == ""){
+			window.location.href="/other/index";
+		}else{
+			window.location.href="/other/search"+"?keyWord="+keyWord;
+		}
+	});
 </SCRIPT> 
     </div>
   </header>
   
-  
-  <div style="width: 1034px;height: 30px">
+  <div style="width: 1034px;height: 30px" th:if="${session.SPRING_SECURITY_CONTEXT}!=null">
             <input name="button" class="input_submit" style="float: right;margin-right: 0px;transform:translateX(127px);width: 50px;"  value="  添 加"  onclick="location='/blogger/add'"/>
   </div>
   <div class="jztop"></div>
@@ -62,33 +98,23 @@
     <ul style="width: 620px" th:each="prod :${bloggers}">
     	<li>
 	     <h3><a th:href="@{'detail?bloggerId='+${prod.id}}"  th:text="${prod.title}"></a></h3>
-	      <figure><img src="../images/img_1.jpg" alt="图片被狗狗给叼走了" /></figure>
+	      <figure><img src="../images/img_1.jpg" alt="图片被狗给叼走了" /></figure>
 	      <ul>
 	        <p th:utext="${prod.outLine}+'...'"> </p>
 	        <a title="TODO" th:href="@{'detail?bloggerId='+${prod.id}}"  target="_blank" class="readmore">阅读全文&gt;&gt;</a>
 	      </ul>
-	      <p class="dateview"><span th:text="${prod.createDate}"></span>作者：<span th:text="${prod.createBy}"></span></p>
+	      <p class="dateview"><span th:text="${#dates.format(prod.createDate, 'yyyy年MM月dd日 HH:mm')}"></span>作者：<span th:text="${prod.author}"></span></p>
    		</li>
     </ul>
-      
-      <h3><a href="/jstt/bj/2015-01-09/740.html">【匆匆那些年】总结个人博客经历的这四年…</a></h3>
-      <figure><img src="../images/img_2.jpg" alt="【匆匆那些年】总结个人博客经历的这四年…" /></figure>
-      <ul>
-        <p>博客从最初的域名购买，到上线已经有四年的时间了，这四年的时间，有笑过，有怨过，有悔过，有执着过，也有放弃过…但最后还是坚持了下来，时间如此匆匆，等再回过头已来不及去弥补</p>
-        <a title="【匆匆那些年】总结个人博客经历的这四年…" href="/jstt/bj/2015-01-09/740.html" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
-      </ul>
-      <p class="dateview"><span>2015-01-09</span><span>作者：杨青</span><span>个人博客：[<a href="/jstt/bj/">心得笔记</a>]</span></p>
     </div>
     <div class="r_box f_r">
       
       <!--tit01 end-->
-      
-      <div class="tuwen">
+       <div class="tuwen">
         <h3 class="tit">文章推荐</h3>
-        
         <ul th:each="prod :${top}">
-          <li><a th:href="@{'/'+${prod.type}+'/detail?'+${prod.type}+'Id='+${prod.id}}"  th:text="${prod.title}"><img src="../images/01.jpg" /><b>住在手机里的朋友</b></a>
-            <p><span class="tulanmu"><a th:href="@{'/'+${prod.type}+'/'}"  th:text="${prod.type}">手机配件</a></span><span class="tutime" th:text="${prod.date}">2015-02-15</span></p>
+          <li><a th:href="@{'/'+${prod.type}+'/detail?'+${prod.type}+'Id='+${prod.id}}"><img src="../images/03.jpg" /><b th:text="${#strings.abbreviate(prod.title,20)}"></b></a> 
+            <p><span class="tulanmu"><a th:href="@{'/'+${prod.type}+'/'}"  th:text="${prod.typeName}"></a></span><span class="tutime" th:text="${prod.date}"></span></p>
           </li>
         </ul>
       </div>

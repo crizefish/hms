@@ -87,7 +87,6 @@ public class BloggerController {
 	    @ResponseBody
 	    public Map<String, String> save(@ModelAttribute Blogger blogger,HttpServletRequest request) {
 	    	Map< String,String> msg = new Hashtable<>();
-	    	blogger.setCreateDate(new Date());
 	    	try{
 	    		
 	    		blogger = bs.save(blogger);

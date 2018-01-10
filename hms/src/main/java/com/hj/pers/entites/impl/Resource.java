@@ -30,6 +30,9 @@ public class Resource extends Base{
 		//类库类型
 		@Column(name="type")
 		private String type;
+		//类库描述
+		@Column(name="desc_word")
+		private String desc;
 		//类库源码
 		@Column(name="content")
 		private String content;
@@ -154,6 +157,14 @@ public class Resource extends Base{
 
 		public void setOutLine(String outLine) {
 			this.outLine = outLine;
+		}
+
+		public String getDesc() {
+			return desc;
+		}
+
+		public void setDesc(String desc) {
+			this.desc = desc;
 		}
 
 		

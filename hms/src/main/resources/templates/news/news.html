@@ -6,23 +6,50 @@
 <link href="../css/base.css" rel="stylesheet" />
 <link href="../css/index.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/jquery/1.9/jquery.js"></script>
+<style type="text/css">
+.user{
+	float:right;
+	
+}
+.user_a{
+font-weight: 600;
+    text-decoration: none;
+    color: #000000;
+}
 
+</style>
 </head>
 <body>
 <!-- <div class="topnav">
 </div> -->
 <div id="wrapper">
-  <header>
+ <header>
     <div class="headtop"></div>
     <div class="contenttop">
-<!--       <div class="logo f_l">技术博客篇</div>
- -->      <div class="search f_r">
-        <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
-          <input name="keyboard" id="keyboard" class="input_text" value="请输入新闻关键字" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入新闻关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入新闻关键字'}" type="text" />
-          <input name="show" value="title" type="hidden" />
-          <input name="tempid" value="1" type="hidden" />
-          <input name="tbname" value="news" type="hidden" />
-          <input name="Submit" class="input_submit" value="搜索" type="submit" />
+     <div class="blank"></div>
+    <div class="user" th:if="${session.SPRING_SECURITY_CONTEXT}==null">
+    				 <ul> 
+                     <li>
+                      欢迎您，
+	                     <a class="user_a" href="/login">请：登录</a>|
+	                     <a class="user_a" href="/user/register">注册</a>
+                     </li>   
+                    </ul>  
+</div> 
+    <div class="user" th:if="${session.SPRING_SECURITY_CONTEXT}!=null">
+    				 <ul> 
+                     <li>
+                      欢迎您，
+	                     <a class="user_a" th:text="${session.SPRING_SECURITY_CONTEXT.authentication.principal.username} "></a>&nbsp;|
+	                     <a class="user_a" href="/logout">注销</a>
+                     </li>   
+                    </ul>  
+</div> 
+ <div class="blank"></div>
+       <div class="search f_r">
+        <form action="/other/search" method="post" name="searchform" id="searchform">
+          <input name="keyWord" id="keyWord" class="input_text" value="请输入关键字"  style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text" />
+          <input name="Submit" class="input_submit" value="搜索" type="button" id="search_button"/>
         </form>
       </div>
       <div class="blank"></div>
@@ -46,6 +73,15 @@
 		},function(){
 			$(this).find('ul:first').css({visibility: "hidden"});
 		});
+	});
+	
+	$("#search_button").click(function sub(){
+		var keyWord = $("#keyWord").val();
+		if(keyWord=="请输入关键字" || keyWord == ""){
+			window.location.href="/other/index";
+		}else{
+			window.location.href="/other/search"+"?keyWord="+keyWord;
+		}
 	});
 </SCRIPT> 
     </div>
@@ -87,7 +123,7 @@
       <div class="ph">
         <h3 class="tit">点击排行</h3>
         <ul class="rank" >
-          <li th:each="prod :${bloggers}" ><a href="@{${prod.url}}" th:text="${prod.title}"  th:title="${prod.title}" th:target="${prod.title}" ></a></li>
+          <li th:each="prod :${o}" ><a href="@{${prod.url}}" th:text="${prod.title}"  th:title="${prod.title}" th:target="${prod.title}" ></a></li>
         </ul>
       </div>
       <div class="tit01">

@@ -2,33 +2,61 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>博客详情</title>
-<link href="../css/base.css" rel="stylesheet" />
-<link href="../css/main.css" rel="stylesheet" />
+<title>博客首页</title>
 <link href="../css/base.css" rel="stylesheet" />
 <link href="../css/index.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/jquery/1.9/jquery.js"></script>
+<style type="text/css">
+.user{
+	float:right;
+	
+}
+.user_a{
+font-weight: 600;
+    text-decoration: none;
+    color: #000000;
+}
+
+</style>
 </head>
 <body>
+<!-- <div class="topnav">
+</div> -->
 <div id="wrapper">
-  <header>
+ <header>
     <div class="headtop"></div>
     <div class="contenttop">
-      <div class="logo f_l"></div>
-      <div class="search f_r">
-        <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
-          <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text" />
-          <input name="show" value="title" type="hidden" />
-          <input name="tempid" value="1" type="hidden" />
-          <input name="tbname" value="news" type="hidden" />
-          <input name="Submit" class="input_submit" value="搜索" type="submit" />
+     <div class="blank"></div>
+    <div class="user" th:if="${session.SPRING_SECURITY_CONTEXT}==null">
+    				 <ul> 
+                     <li>
+                      欢迎您，
+	                     <a class="user_a" href="/login">请：登录</a>|
+	                     <a class="user_a" href="/user/register">注册</a>
+                     </li>   
+                    </ul>  
+</div> 
+    <div class="user" th:if="${session.SPRING_SECURITY_CONTEXT}!=null">
+    				 <ul> 
+                     <li>
+                      欢迎您，
+	                     <a class="user_a" th:text="${session.SPRING_SECURITY_CONTEXT.authentication.principal.username} "></a>&nbsp;|
+	                     <a class="user_a" href="/logout">注销</a>
+                     </li>   
+                    </ul>  
+</div> 
+ <div class="blank"></div>
+       <div class="search f_r">
+        <form action="/other/search" method="post" name="searchform" id="searchform">
+          <input name="keyWord" id="keyWord" class="input_text" value="请输入关键字"  style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text" />
+          <input name="Submit" class="input_submit" value="搜索" type="button" id="search_button"/>
         </form>
       </div>
       <div class="blank"></div>
       <nav>
         <div  class="navigation">
           <ul class="menu">
-            <li><a th:href="@{'/index/'}" >时事新闻</a></li>
+            <li><a th:href="@{'/news/'}" >时事新闻</a></li>
             <li><a th:href="@{'/blogger/'}" >技术博客</a> </li>
             <li><a th:href="@{'/resource/'}" >Java类库</a></li>
             <li><a th:href="@{'/note/'}" >杂谈随记</a> </li>
@@ -47,6 +75,15 @@
 		},function(){
 			$(this).find('ul:first').css({visibility: "hidden"});
 		});
+	});
+	
+	$("#search_button").click(function sub(){
+		var keyWord = $("#keyWord").val();
+		if(keyWord=="请输入关键字" || keyWord == ""){
+			window.location.href="/other/index";
+		}else{
+			window.location.href="/other/search"+"?keyWord="+keyWord;
+		}
 	});
 </script> 
     </div>

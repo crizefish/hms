@@ -9,10 +9,10 @@ import com.hj.pers.resp.BaseRepository;
 
 public interface ResourceReposity extends BaseRepository<Resource,Long>{
 	
-	@Query(value = "select * from blogger  order by create_Date desc limit ?1",nativeQuery=true)
+	@Query(value = "select r.* from resource r  order by r.create_Date desc limit ?1",nativeQuery=true)
 	public List<Resource>queryRecentResource(Long count);
 	
-	@Query(value = "SELECT * FROM blogger WHERE content LIKE %"+"?1"+"% ",nativeQuery=true)
+	@Query(value = "SELECT r.* FROM resource r WHERE r.content LIKE %"+"?1"+"% ",nativeQuery=true)
 	public List<Resource>queryResourceByKeyword(String keyWord);
 
 }

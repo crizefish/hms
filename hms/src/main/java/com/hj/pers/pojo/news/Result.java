@@ -1,4 +1,4 @@
-package com.hj.pers.entites;
+package com.hj.pers.pojo.news;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -5,13 +5,9 @@ html, body {
 }
 body {
  	background-image: url(../images/footside.jpg);
- 	background-size: cover;
-	width: 100%;
-	;
 }
 ul {
 	list-style-type: none;
-	width: 100%;
 	margin: 0;
 	padding: 0;
 }
@@ -28,7 +24,7 @@ li {
 	margin-top: 80px;
 }
 .search_t {
-	width: 1000px;
+	width: 600px;
 	margin-left: 190px;
 }
 .search_logo {
@@ -50,7 +46,6 @@ li {
 	height: 27.4px;
 	background-color: transparent;
 	border-color：#FFF;
-	border:hidden锛�float:right;
 	color:#000;
 }
 
@@ -75,7 +70,6 @@ table td {
 	border-top: 1px solid #804040;
 }
 .recent_actions {
-	width: 1000px;
 	text-align: center;
 	margin: 0 auto
 }
@@ -86,16 +80,14 @@ table td {
 	float: left;
 }
 .recent_action_status {
-	width: 1000px;
 	color: #000;
 	font-size: 20px;
 }
 .blank {
-	width: 1000px;
+	width: 100%;
 	height: 50px;
 }
 .singel_status {
-	width: 1000px;
 	height: 50px;
 }
 .video_color {
