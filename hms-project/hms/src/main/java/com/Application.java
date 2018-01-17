@@ -17,7 +17,8 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableTransactionManagement
 @EnableEurekaClient
-@EnableRedisHttpSession(maxInactiveIntervalInSeconds=43200)//session有效期12小时
+//session有效期12小时
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds=43200)
 public class Application {
 
 	@Qualifier
