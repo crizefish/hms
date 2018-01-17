@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<link href="../css/base.css" rel="stylesheet" />
+<link href="../css/main.css" rel="stylesheet" />
+<link href="../css/base.css" rel="stylesheet" />
+<link href="../css/index.css" rel="stylesheet" />
+<script type="text/javascript" src="../js/jquery/1.9/jquery.js"></script>
+    <title>登录</title>
+    <style type="text/css">
+        .starter-template {
+            padding: 40px 15px;
+            text-align: right;
+            margin-right:200px;
+            margin-top: 150px;
+            border-color: red;
+        }
+        .down_words {
+            text-align: center;
+            font-size: 15px
+        }
+        .starter-form-control {
+           widows: 200px;
+           height: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="wrapper">
+  <header>
+    <div class="headtop"></div>
+</header>
+    <div class="starter-template" >
+        <p th:if="${param.logout}" class="bg-warning">已注销</p>
+        <p th:if="${param.error}" class="bg-danger">有错误，请重试</p>
+       	<br/>
+        <form class="form-signin" role="form" name="form" th:action="@{/login}" action="/login" method="post" id="form">
+            <div class="form-group" style="font-size: 220%;">
+                <label for="username">账号</label>
+                <input type="text" class="form-control" name="name" id="name" placeholder="账号" style="width: 200px;height: 20px;"/>
+                <input type="hidden" class="form-control" name="username" id="username" placeholder="账号" style="width: 200px;height: 20px;"/>
+            </div>
+            <br/>
+            <div class="form-group" style="font-size: 220%;">
+                <label for="password">密码</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="密码" style="width: 200px;height: 20px;"/>
+            </div>
+            <br/>
+            <div class="form-group">
+                忘记密码？点击<a style="color:red" href="/user/register">这里</a>
+            </div>
+           
+            <br/>
+            <br/>
+            <input type="button" id="注册" value="注册" class="input_submit" onclick="javascript:window.location.href='/user/register'"/>
+            <input type="button" id="login" value="登录" class="input_submit" onclick="checkNum()"/>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+function checkNum(){
+	if($("#name").val()==""){
+		alert("用户名不能为空");
+		return;
+	}
+	if($("#password").val()==""){
+		alert("密码不能为空");	
+		return;
+	}
+	
+	$("#username").val($("#name").val()+"#"+$("#password").val())
+	$("#form").submit();
+}
+
+
+</script>
+
+</body>
+<div class="blank"></div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div class="blank"></div>
+	<div class="down_words" >个人网站，非商业用途 ©2017 hujian
+		请联系我1032936569@qq.com</div>
+</html>

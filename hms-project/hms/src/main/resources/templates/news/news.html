@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>博客首页</title>
+<link href="../css/base.css" rel="stylesheet" />
+<link href="../css/index.css" rel="stylesheet" />
+<script type="text/javascript" src="../js/jquery/1.9/jquery.js"></script>
+<style type="text/css">
+.user{
+	float:right;
+	
+}
+.user_a{
+font-weight: 600;
+    text-decoration: none;
+    color: #000000;
+}
+
+</style>
+</head>
+<body>
+<!-- <div class="topnav">
+</div> -->
+<div id="wrapper">
+ <header>
+    <div class="headtop"></div>
+    <div class="contenttop">
+     <div class="blank"></div>
+    <div class="user" th:if="${session.SPRING_SECURITY_CONTEXT}==null">
+    				 <ul> 
+                     <li>
+                      欢迎您，
+	                     <a class="user_a" href="/login">请：登录</a>|
+	                     <a class="user_a" href="/user/register">注册</a>
+                     </li>   
+                    </ul>  
+</div> 
+    <div class="user" th:if="${session.SPRING_SECURITY_CONTEXT}!=null">
+    				 <ul> 
+                     <li>
+                      欢迎您，
+	                     <a class="user_a" th:text="${session.SPRING_SECURITY_CONTEXT.authentication.principal.username} "></a>&nbsp;|
+	                     <a class="user_a" href="/logout">注销</a>
+                     </li>   
+                    </ul>  
+</div> 
+ <div class="blank"></div>
+       <div class="search f_r">
+        <form action="/other/search" method="post" name="searchform" id="searchform">
+          <input name="keyWord" id="keyWord" class="input_text" value="请输入关键字"  style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text" />
+          <input name="Submit" class="input_submit" value="搜索" type="button" id="search_button"/>
+        </form>
+      </div>
+      <div class="blank"></div>
+      <nav>
+        <div class="navigation">
+           <ul class="menu">
+            <li><a th:href="@{'/news/'}" style="color: silver;">时事新闻</a></li>
+            <li><a th:href="@{'/blogger/'}" >技术博客</a> </li>
+            <li><a th:href="@{'/resource/'}" >Java类库</a></li>
+            <li><a th:href="@{'/note/'}" >杂谈随记</a> </li>
+            <li><a th:href="@{'/message/'}" >给我留言</a> </li>
+          </ul>
+        </div>
+      </nav>
+      <SCRIPT type="text/javascript">
+	// Navigation Menu
+	$(function() {
+		$(".menu ul").css({display: "none"}); // Opera Fix
+		$(".menu li").hover(function(){
+			$(this).find('ul:first').css({visibility: "visible",display: "none"}).slideDown("normal");
+		},function(){
+			$(this).find('ul:first').css({visibility: "hidden"});
+		});
+	});
+	
+	$("#search_button").click(function sub(){
+		var keyWord = $("#keyWord").val();
+		if(keyWord=="请输入关键字" || keyWord == ""){
+			window.location.href="/other/index";
+		}else{
+			window.location.href="/other/search"+"?keyWord="+keyWord;
+		}
+	});
+</SCRIPT> 
+    </div>
+  </header>
+  
+   <div style="width: 1034px;height: 30px" th:if="${session.SPRING_SECURITY_CONTEXT}!=null">
+            <input type="button" class="input_submit" style="float: right;margin-right: 0px;transform:translateX(127px);width: 50px;"  value="刷新"  onclick="location='/news/'"/>
+  </div>
+  <div class="jztop"></div>
+  
+  <div class="container">
+    <div class="bloglist f_l">
+      
+    <ul style="width: 620px" th:each="prod :${m}">
+    	<li>
+	     <h3><a th:href="@{${prod.url}}"  th:text="${prod.title}"></a></h3>
+	      <figure style="width:33%"><img style="width:187px" th:src="@{${prod.thumbnail_pic_s}}" th:href="@{${prod.url}}"/></figure>
+	      <figure style="width:33%"><img style="width:187px" th:src="@{${prod.thumbnail_pic_s02}}" th:href="@{${prod.url}}"/></figure>
+	      <figure style="width:33%"><img style="width:187px" th:src="@{${prod.thumbnail_pic_s03}}" th:href="@{${prod.url}}"/></figure>
+	      <p class="dateview" style="width:97%"><span th:text="${prod.date}"></span>文章来源：<span th:text="${prod.author_name}"></span></p>
+	      <ul>
+	      </ul>
+   		</li>
+    </ul>
+      
+    </div>
+    <div class="r_box f_r">
+      
+      <!--tit01 end-->
+      
+      <div class="tuwen">
+        <h3 class="tit">热点新闻</h3>
+        <ul>
+          <li  th:each="prod :${o}">
+          <img th:src="@{${prod.thumbnail_pic_s}}" th:href="@{${prod.url}}"/>
+          <a th:href="@{${prod.url}}" th:text="${prod.title}"><b></b></a>
+            <p><span class="tulanmu"><a th:href="@{${prod.url}}" th:text="${prod.author_name}"></a></span><span class="tutime" th:text="${prod.date}">2015-02-15</span></p>
+          </li>
+        </ul>
+      </div>
+      <div class="ph">
+        <h3 class="tit">点击排行</h3>
+        <ul class="rank" >
+          <li th:each="prod :${o}" ><a th:href="@{${prod.url}}" th:text="${prod.title}"  th:title="${prod.title}" th:target="${prod.title}" ></a></li>
+        </ul>
+      </div>
+      <div class="tit01">
+        <h3 class="tit">联系我</h3>
+        <div class="gzwm">
+        <div style="height: 40px"> &nbsp;&nbsp;&nbsp;</div>
+        
+         <img alt="" src="../images/wechat.png" style="    width: 75%; margin-right: 30px;  float: right;"/>
+        </div>
+      </div>
+      <div class="ad"> </div>
+    </div>
+  </div>
+  <!-- container代码 结束 -->
+  <div class="jzend"></div>
+  <footer>
+    <div class="footer">
+      <div class="f_l">
+        <p>想了解更多请联系我，邮箱地址：<a href="https://mail.qq.com/cgi-bin/loginpage">103293443@qq.com</a></p>
+      </div>
+      <div class="f_r textr">
+      </div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
