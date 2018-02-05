@@ -48,8 +48,8 @@ public class NewsController {
 	        NewsRequest result = null;
 	        
 	        //if redis cached the result,get result from redis,else pull from web interface 
-	        long interval = queryTime == null? 0 :new Date().getTime()-queryTime.getTime();
-	        if(redisT.hasKey("result")&&interval<60000){
+	        long interval = (queryTime == null? 0 :(new Date().getTime()-queryTime.getTime()));
+	        if(redisT.hasKey("result")&&interval<60000&&interval!=0){
 	        	String json = redisT.opsForValue().get("result");
 	            result = g.fromJson(json, NewsRequest.class);
 	        }else{

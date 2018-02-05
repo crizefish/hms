@@ -16,8 +16,15 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
-</style>
+.page li{
+float: left;
+margin-left: 20px;
+    text-decoration: none;
+    color: black;
+    font-family: 微软雅黑;
+    font-size:15px;
+    }
+    </style>
 </head>
 <body>
 <div id="wrapper">
@@ -104,7 +111,29 @@
 	      <p class="dateview"><span th:text="${#dates.format(prod.createDate, 'yyyy年MM月dd日 HH:mm')}"></span>作者：<span th:text="${prod.author}"></span></p>
    		</li>
     </ul>
+    
+    
+    <div id="barcon" class="barcon" >  
+    <div id="barcon1" class="barcon1"></div>  
+        <div id="barcon2" class="page">  
+            <ul>  
+                <li><a href="###" id="firstPage">第1页</a></li>  
+                <li><a href="###" id="firstPage">首页</a></li>  
+                <li><a href="###" id="prePage">上一页</a></li>  
+                <li><a href="###" id="nextPage">下一页</a></li>  
+                <li><a href="###" id="lastPage">尾页</a></li>  
+                <li><select id="jumpWhere">  
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                </select></li>  
+                <li><a href="###" id="jumpPage" onclick="jumpPage()">跳转</a></li>  
+            </ul>  
+        </div>  
+</div> 
     </div>
+    
+    
     <div class="r_box f_r">
       
       <!--tit01 end-->
@@ -127,9 +156,10 @@
         <div class="gzwm">
         <div style="height: 40px"> &nbsp;&nbsp;&nbsp;</div>
         
-         <img alt="" src="../images/wechat.png" style="    width: 75%; margin-right: 30px;  float: right;"/>
+         <img alt=""  src="../images/wechat.png" style="    width: 75%; margin-right: 30px;  float: right;"/>
         </div>
       </div>
+     
       <div class="ad"> </div>
     </div>
   </div>

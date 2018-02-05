@@ -163,7 +163,13 @@ font-weight: 600;
   </header>
     <div class="jztop"></div>
   <div class="container" style="background: inherit;">
-  <div style="height: 50px;">  <h5>留言板</h5></div>
+ <div>
+        <h3 class="tit">关于本站</h3>
+        <div class="gzwm">
+        <a href="/introduction/" style="font-size: 18px">&nbsp;&nbsp; 网站概览 |</a>
+        <a href="/introduction/" style="font-size: 18px">项目资料</a>
+        </div>
+      </div>
 
   
  <div class="container_s">
@@ -207,7 +213,10 @@ font-weight: 600;
 	] */
 	
 	$(function(){
-		var arr = [[${comment}]];
+		
+		
+		//alert(JSON.stringify([[${m}]]))
+		var arr = [[${m.content}]];
 		if(arr!=null){
 	$(".comment-list").addCommentList({data:arr,add:""});
 		}
@@ -225,7 +234,7 @@ font-weight: 600;
 			$.ajax({
 		        cache: true,
 		        type: "POST",
-		        url:"/message/add",
+		        url:"/message/comment",
 		        contentType: "application/json; charset=utf-8",
 		        data: JSON.stringify(obj),
 		        dataType: "json",
@@ -250,7 +259,7 @@ font-weight: 600;
 		$.ajax({
 	        cache: true,
 	        type: "POST",
-	        url:"/message/add",
+	        url:"/message/comment",
 	        contentType: "application/json; charset=utf-8",
 	        data: JSON.stringify(obj),
 	        dataType: "json",

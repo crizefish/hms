@@ -1,5 +1,6 @@
 package com.hj.pers.service;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -20,6 +21,8 @@ import com.hj.pers.entites.impl.User;
 import com.hj.pers.mapper.CommonMapper;
 import com.hj.pers.pojo.article.Common;
 import com.hj.pers.resp.impl.UserRepository;
+import com.hj.pers.util.Constants;
+import com.hj.pers.util.DesUtil;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -32,10 +35,6 @@ public class UserService implements UserDetailsService {
 	@Value("${spring.mail.username}")
 	private String Sender; // 读取配置文件中的参数
 	
-	
-	public void save(User u) {
-		ur.saveAndFlush(u);
-	}
 	
 	public User findOne(Long id) {
 		return ur.findOne(id);
@@ -50,7 +49,6 @@ public class UserService implements UserDetailsService {
 		if (user == null) {
 			throw new UsernameNotFoundException("用户名不存在");
 		}
-		user.setPassword(p);
 		user.addauth("role");
 		user.setStatus(true);
 		System.out.println("s:" + user);
@@ -70,9 +68,11 @@ public class UserService implements UserDetailsService {
 		return l;
 	}
 	
-	public User saveUser(User u){
+	public User saveUser(User u) throws IOException, Exception{
 		if(!StringUtils.isEmpty(u.getUsername())){
-		 return  ur.save(u);
+			u.setPassword(DesUtil.aesEncrypt(u.getPassword(),Constants.KEY));
+			User user = (User)setCommonInfo(u);
+			 return ur.saveAndFlush(user);
 		}else{
 			return null;
 		}

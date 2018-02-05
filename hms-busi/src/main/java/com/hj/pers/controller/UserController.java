@@ -1,10 +1,13 @@
 package com.hj.pers.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -18,6 +21,9 @@ import com.hj.pers.service.UserService;
 public class UserController {
 	@Autowired
 	private UserService us;
+	
+	private static Logger logger = LoggerFactory.getLogger(ResourceController.class);
+
 	
 	private static int num = 0;
 	
@@ -53,11 +59,21 @@ public class UserController {
 		String n = request.getParameter("checkNum");
 		if(!StringUtils.isEmpty(n)){
 			if(num==Integer.parseInt(n)){
-				User user = us.saveUser(u);
+				User user = null;
+				try {
+					user = us.saveUser(u);
+				} catch (IOException e) {
+					m.put("msg", "保存用户信息失败，请检查");
+					logger.error("保存密码出错");
+				} catch (Exception e) {
+					m.put("msg", "保存用户信息失败，请检查");
+					logger.error("保存密码出错");
+					e.printStackTrace();
+				}
 				if(user!=null){
 					m.put("msg", "1");
 				}else{
-					m.put("msg", "保存用户信息失败，请检查");;
+					m.put("msg", "保存用户信息失败，请检查");
 				}
 				return m;
 			}else{

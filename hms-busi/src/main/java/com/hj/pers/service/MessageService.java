@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,5 +28,10 @@ private MessageReposity mr;
 	public List<Message> findAllMessage(String articleId) {
 		return  mr.findAll();
 	}
+	
+	public Page<Message> findPageMessage(int page,int size) {
+		return  mr.findAll(new PageRequest(page, size));
+	}
+	
 	
 }
