@@ -182,7 +182,7 @@ margin-left: 20px;
       <div class="ph">
         <h3 class="tit">点击排行</h3>
         <ul class="rank" >
-          <li th:each="prod :${hot}"><a th:href="@{'detail?bloggerId='+${prod.id}}" th:text="${prod.title}"  th:title="${prod.title}" th:target="${prod.title}" ></a></li>
+          <li th:each="prod :${hot}"><a th:href="@{'/'+${prod.type}+'/detail?'+${prod.type}+'Id='+${prod.id}}" th:text="${prod.title}"  th:title="${prod.title}" th:target="${prod.title}" ></a></li>
         </ul>
       </div>
       <div class="tit01">
