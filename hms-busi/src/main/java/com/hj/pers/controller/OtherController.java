@@ -27,7 +27,11 @@ public class OtherController {
 	  @RequestMapping(value="/search", produces = "application/json; charset=utf-8")
 	    public String search(HttpServletRequest request,Model m) {
 		  String keyWord = request.getParameter("keyWord");
-		  List<Common> common = o.searchByKeyWord(keyWord);
+		  String trim = keyWord.trim();
+		  if(trim.contains("'")){
+			  trim = "";
+		  }
+		  List<Common> common = o.searchByKeyWord(trim);
 		  m.addAttribute("info",common);
 		  m.addAttribute("keyWord",keyWord);
 	    	return "/search/search"; 

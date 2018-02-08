@@ -113,25 +113,59 @@ margin-left: 20px;
     </ul>
     
     
-    <div id="barcon" class="barcon" >  
-    <div id="barcon1" class="barcon1"></div>  
-        <div id="barcon2" class="page">  
-            <ul>  
-                <li><a href="###" id="firstPage">第1页</a></li>  
-                <li><a href="###" id="firstPage">首页</a></li>  
-                <li><a href="###" id="prePage">上一页</a></li>  
-                <li><a href="###" id="nextPage">下一页</a></li>  
-                <li><a href="###" id="lastPage">尾页</a></li>  
-                <li><select id="jumpWhere">  
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                </select></li>  
-                <li><a href="###" id="jumpPage" onclick="jumpPage()">跳转</a></li>  
-            </ul>  
-        </div>  
-</div> 
+     <div id="barcon" class="barcon" >  
+	    	<div id="barcon1" class="barcon1"></div>  
+	        <div id="barcon2" class="page">  
+	            <ul>  
+	                <li>
+	                	<a href="###">共
+	                	<span id="totle_num" style="color:darkcyan">  </span>
+	                	页，当前第
+	                	<span id="current_num" style="color:darkcyan"></span>页
+	                	</a>
+	                	</li>  
+	                <li><a href="###" id="firstPage" >首页</a></li>  
+	                <li><a href="###" id="prePage">上一页</a></li>  
+	                <li><a href="###" id="nextPage">下一页</a></li>  
+	                <li><a href="###" id="lastPage">尾页</a></li>  
+	            </ul>  
+	        </div>  
+		</div> 
     </div>
+    <script th:inline="javascript">
+    $(function(){
+		var page = [[${bloggers}]];
+		$("#totle_num").text(Number(page.totalPages));
+		$("#current_num").text(page.number+1);
+		
+	$("#firstPage").click(function(){
+		window.location.href = "/blogger/?startPage="+1;
+	});
+	
+	$("#prePage").click(function(){
+		var startPage1 = Number($("#current_num").text())-1;
+		if(startPage1>=1){
+		window.location.href = "/blogger/?startPage="+(startPage1);
+		}else{
+			alert("已经是第一页了哦")
+		}
+	});
+    
+	$("#nextPage").click(function(){
+		var startPage2 = Number($("#current_num").text())+1;
+		var total = Number($("#totle_num").text());
+		if( total>=startPage2){
+		window.location.href = "/blogger/?startPage="+(startPage2);
+		}else{
+			alert("已经是最后一页了哦")
+
+		}
+	});
+	$("#lastPage").click(function(){
+		window.location.href = "/blogger/?startPage="+$("#totle_num").text();
+	});
+	})
+    </script>
     
     
     <div class="r_box f_r">

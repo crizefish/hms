@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>文件详情</title>
+</head>
+<body  id="abc">
+
+</body>
+
+<script th:inline="javascript">
+$(document).ready(function(){
+	document.getElementById('abc').innerHTML=[[${content}]];
+});
+
+</script>
+</html>

@@ -64,7 +64,14 @@ font-weight: 600;
           </ul>
         </div>
       </nav>
+      
       <SCRIPT type="text/javascript">
+      $(function(){
+      $("#keyWord_com").find('a').click(function(){
+    	  window.location.href="/other/search"+"?keyWord="+$(this).text();
+      })
+    	  
+      })
 	// Navigation Menu
 	$(function() {
 		$(".menu ul").css({display: "none"}); // Opera Fix
@@ -101,11 +108,11 @@ font-weight: 600;
   			 <div class="blank" style="height: 30px"></div>  
   			<h3>温馨提示:</h3>
   			<h2>请检查您的输入是否正确</h2>
-  			<h2>如网页未收录 ，请登录或注册后添加相关内容，感激不尽</h2>
+  			<h2>如网页未收录 ，请登录或注册后添加相关内容</h2>
   			<h2>如有任何意见或建议，请及时反馈给我</h2>
   			  <div class="blank" style="height: 80px"></div>  
   			<h3>推荐搜索:</h3>
-  			<ul>
+  			<ul id="keyWord_com">
   			 <li style="width: 100px;float: left;"><a>java</a> </li>
   			 <li style="width: 100px;float: left;"><a>数据库</a> </li>
   			 <li style="width: 100px;float: left;"><a>运维</a> </li>

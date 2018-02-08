@@ -166,12 +166,12 @@ font-weight: 600;
  <div>
         <h3 class="tit">关于本站</h3>
         <div class="gzwm">
-        <a href="/introduction/" style="font-size: 18px">&nbsp;&nbsp; 网站概览 |</a>
+        <a href="/introduction/short" style="font-size: 18px">&nbsp;&nbsp; 网站概览 |</a>
         <a href="/introduction/" style="font-size: 18px">项目资料</a>
         </div>
       </div>
 
-  
+   <h3 class="tit">留言板</h3>
  <div class="container_s">
 	<div class="commentbox">
 		<textarea cols="80" rows="50" placeholder="有什么想对我说的不......" class="mytextarea" id="content"></textarea>
@@ -222,11 +222,19 @@ font-weight: 600;
 		}
 	})
 	$("#comment").click(function(){
+		if($("#content").val().trim()==""){
+			alert("内容不能为空")
+			return;
+		}
 			var obj = new Object();
-			obj.replyName="匿名";
+			if($("#replyName").val()==null){
+			obj.replyName="游客";
+			}else{
+			obj.replyName=$("#replyName").val();
+			}
+			obj.img="../image/hujian.png";
 			obj.content=$("#content").val();
 			obj.articleId=$("#articleId").val();
-			obj.replyName=$("#replyName").val();
 			obj.replyId=$("#replyId").val();
 			obj.replyBody=null;
 			$(".comment-list").addCommentList({data:[],add:obj});
@@ -256,6 +264,7 @@ font-weight: 600;
 	
 	
 	$(".send").click(function(){
+		alert("cdsc")
 		$.ajax({
 	        cache: true,
 	        type: "POST",

@@ -3,6 +3,8 @@ package com.hj.pers.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,8 +27,8 @@ private UserService us;
 		return bs.findOne(id);
 	}
 	
-	public List<Note> queryRecentNote(Long count) {
-		return bs.queryRecentNote(count).size()>0?bs.queryRecentNote(count):null;
+	public Page<Note> queryRecentNote(Pageable pageable) {
+		return bs.findAll(pageable);
 	}
 	public List<Note> queryNoteByWord(String keyword) {
 		return bs.queryNoteByKeyword(keyword);

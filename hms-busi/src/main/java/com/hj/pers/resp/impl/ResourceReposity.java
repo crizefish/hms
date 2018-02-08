@@ -2,6 +2,8 @@ package com.hj.pers.resp.impl;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 
 import com.hj.pers.entites.impl.Resource;
@@ -14,5 +16,7 @@ public interface ResourceReposity extends BaseRepository<Resource,Long>{
 	
 	@Query(value = "SELECT r.* FROM resource r WHERE r.content LIKE %"+"?1"+"% ",nativeQuery=true)
 	public List<Resource>queryResourceByKeyword(String keyWord);
+	
+	public Page<Resource> findAll(Pageable pageable);
 
 }

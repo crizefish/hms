@@ -10,7 +10,7 @@
 		+"<div class='comment-content-header'><span><i class='glyphicon glyphicon-time'></i>"+obj.time+"</span>";
 		
 		if(typeof(obj.address) != "undefined" && obj.browse != ""){
-			el =el+"<span><i class='glyphicon glyphicon-map-marker'></i>"+obj.address+"</span>";
+			el =el+"<span><i class='glyphicon glyphicon-map-marker'></i></span>";
 		}
 		el = el+"</div><p class='content'>"+obj.content+"</p><div class='comment-content-footer'><div class='row'><div class='col-md-10'>";
 		

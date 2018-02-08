@@ -17,6 +17,22 @@ font-weight: 600;
     color: #000000;
 }
 
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.page li{
+float: left;
+margin-left: 20px;
+    text-decoration: none;
+    color: black;
+    font-family: 微软雅黑;
+    font-size:15px;
+    }
 </style>
 </head>
 <body>
@@ -106,8 +122,51 @@ font-weight: 600;
 	      </ul>
    		</li>
     </ul>
-      
+         <div id="barcon" class="barcon" >  
+	    	<div id="barcon1" class="barcon1"></div>  
+	        <div id="barcon2" class="page">  
+	            <ul>  
+	                <li>
+	                	<a href="###">共
+	                	<span id="totle_num" style="color:darkcyan">  </span>
+	                	页，当前第
+	                	<span id="current_num" style="color:darkcyan"></span>页
+	                	</a>
+	                	</li>  
+	                <li><a href="###" id="firstPage" >首页</a></li>  
+	                <li><a href="###" id="prePage">上一页</a></li>  
+	                <li><a href="###" id="nextPage">下一页</a></li>  
+	                <li><a href="###" id="lastPage">尾页</a></li>  
+	            </ul>  
+	        </div>  
+		</div> 
     </div>
+<script th:inline="javascript">
+    $(function(){
+		var page = [[${page}]];
+		$("#totle_num").text(page.totle_num);
+		$("#current_num").text(page.current_num);
+		
+	$("#firstPage").click(function(){
+		window.location.href = "/news/?startPage="+1;
+	});
+	
+	$("#prePage").click(function(){
+		window.location.href = "/news/?startPage="+(Number($("#current_num").text())-1);
+	});
+    
+	$("#nextPage").click(function(){
+		window.location.href = "/news/?startPage="+(Number($("#current_num").text())+1);
+	});
+	
+	$("#lastPage").click(function(){
+		window.location.href = "/news/?startPage="+$("#totle_num").text();
+	});
+	})
+    
+    </script>
+    
+    
     <div class="r_box f_r">
       
       <!--tit01 end-->

@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>博客详情</title>
+<meta name="keywords" content="个人博客模板古典系列之――江南墨卷" />
+<meta name="description" content="个人博客模板古典系列之――江南墨卷" />
+<link href="../css/base.css" rel="stylesheet" />
+<link href="../css/main.css" rel="stylesheet" />
+<script type="text/javascript" src="../js/jquery/1.9/jquery.js"></script>
+<script type="text/javascript" src="../ueditor/third-party/SyntaxHighlighter/shCore.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../ueditor/third-party/SyntaxHighlighter/shCoreDefault.css" />
+
+<style>
+	.container_s{
+		width: 600px;
+		float: right;
+		margin-right: 520px
+	}
+	.commentbox{
+		width: 900px;
+		margin: 20px auto;
+	}
+	.mytextarea {
+	    width: 100%;
+	    overflow: auto;
+	    word-break: break-all;
+	    height: 100px;
+	    color: #000;
+	    font-size: 1em;
+	    resize: none;
+	    background: transparent;
+	}
+	.comment-list{
+		width: 900px;
+		margin: 20px auto;
+		clear: both;
+		padding-top: 20px;
+	}
+	.comment-list .comment-info{
+		position: relative;
+		margin-bottom: 20px;
+		margin-bottom: 20px;
+		border-bottom: 1px solid #ccc;
+	}
+	.comment-list .comment-info header{
+		width: 10%;
+		position: absolute;
+	}
+	.comment-list .comment-info header img{
+		width: 100%;
+		border-radius: 50%;
+		padding: 5px;
+	}
+	.comment-list .comment-info .comment-right{
+		padding:5px 0px 5px 11%; 
+	}
+	.comment-list .comment-info .comment-right h3{
+		margin: 5px 0px;
+	}
+	.comment-list .comment-info .comment-right .comment-content-header{
+		height: 25px;
+	}
+	.comment-list .comment-info .comment-right .comment-content-header span,.comment-list .comment-info .comment-right .comment-content-footer span{
+		padding-right: 2em;
+		color: #aaa;
+	}
+	.comment-list .comment-info .comment-right .comment-content-header span,.comment-list .comment-info .comment-right .comment-content-footer span.reply-btn,.send,.reply-list-btn{
+		cursor: pointer;
+	}
+	.comment-list .comment-info .comment-right .reply-list {
+		border-left: 3px solid #ccc;
+		padding-left: 7px;
+	}
+	.comment-list .comment-info .comment-right .reply-list .reply{
+		border-bottom: 1px dashed #ccc;
+	}
+	.comment-list .comment-info .comment-right .reply-list .reply div span{
+		padding-left: 10px;
+	}
+	.comment-list .comment-info .comment-right .reply-list .reply p span{
+		padding-right: 2em;
+		color: #aaa;
+	}
+</style>
+</head>
+<body>
+<div id="wrapper">
+  <header>
+      <div class="headtop"></div>
+    <div class="contenttop">
+     <div class="blank"></div>
+    <div class="user" th:if="${session.SPRING_SECURITY_CONTEXT}==null">
+    				 <ul> 
+                     <li>
+                      欢迎您，
+	                     <a class="user_a" href="/login">请：登录</a>|
+	                     <a class="user_a" href="/user/register">注册</a>
+                     </li>   
+                    </ul>  
+</div> 
+    <div class="user" th:if="${session.SPRING_SECURITY_CONTEXT}!=null">
+    				 <ul> 
+                     <li>
+                      欢迎您，
+	                     <a class="user_a" th:text="${session.SPRING_SECURITY_CONTEXT.authentication.principal.username} "></a>&nbsp;|
+	                     <a class="user_a" href="/logout">注销</a>
+                     </li>   
+                    </ul>  
+</div> 
+ <div class="blank"></div>
+      <div class="search f_r">
+        <form action="/other/search" method="post" name="searchform" id="searchform">
+          <input name="keyWord" id="keyWord" class="input_text" value="请输入关键字"  style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text" />
+          <input name="Submit" class="input_submit" value="搜索" type="button" id="search_button"/>
+        </form>
+      </div>
+      <div class="blank"></div>
+      <nav>
+        <div  class="navigation">
+          <ul class="menu">
+            <li><a th:href="@{'/news/'}">时事新闻</a></li>
+            <li><a  th:href="@{'/blogger/'}" >技术博客</a> </li>
+            <li><a th:href="@{'/resource/'}" >Java类库</a></li>
+            <li><a th:href="@{'/note/'}" >杂谈随记</a> </li>
+            <li><a style="color: silver;" th:href="@{'/message/'}" >给我留言</a> </li>
+          </ul>
+        </div>
+      </nav>
+      <script type="text/javascript">
+      SyntaxHighlighter.all();
+	// Navigation Menu
+	$(function() {
+		$(".menu ul").css({display: "none"}); // Opera Fix
+		$(".menu li").hover(function(){
+			$(this).find('ul:first').css({visibility: "visible",display: "none"}).slideDown("normal");
+		},function(){
+			$(this).find('ul:first').css({visibility: "hidden"});
+		});
+	});
+	
+	$("#search_button").click(function sub(){
+		var keyWord = $("#keyWord").val();
+		if(keyWord=="请输入关键字" || keyWord == ""){
+			window.location.href="/other/index";
+		}else{
+			window.location.href="/other/search"+"?keyWord="+keyWord;
+		}
+	});
+</script> 
+    </div>
+    
+     	<div style="width: 1034px;height: 35px">
+            <input name="button" class="input_submit" style="float: right;margin-right: 60px;transform:translateX(127px);width: 50px;"  value="  关 闭"  onclick="location='/message/'"/>
+  </div>
+  </header>
+  <div class="container">
+    <div class="con_content">
+      <div class="about_box">
+        <h2 class="nh1">
+        <span>您现在的位置是：<a href="/message/" target="_blank">给我留言>></a><a th:href="@{'/introduction/short'}"  target="_blank">项目概述</a></span>
+      </h2>
+        <div class="f_box">
+          <p class="a_title">"霓霄之巅"项目概述</p>
+          <p class="p_title"></p>
+        </div>
+        <ul class="about_content">
+         <p>
+         <p>&nbsp;“霓霄之巅”网，个人网站，旨在练手以及收集学习心得及感悟。本站采用springboot框架搭建，集成<span style="color: rgb(255, 0, 0);">mybatis</span>，进行数据层管理。项目采用<span style="color: rgb(255, 0, 0);">spring security</span>作为安全框架，并结合<span style="color: rgb(255, 0, 0);">spring could</span>系列的<span style="color: rgb(255, 0, 0);">注册中心</span>、<span style="color: rgb(255, 0, 0);">配置中心</span>使项目更灵活。数据库层采用<span style="color: rgb(255, 0, 0);">mysql</span>作存储数据库，<span style="color: rgb(255, 0, 0);">redis</span>作缓存数据库，前端采用spring官方推荐的<span style="color: rgb(255, 0, 0);">thymeleaf</span>框架并结合<span style="color: rgb(255, 0, 0);">jquery</span>进行数据渲染，网站采集了网上的多个网络接口丰富网站内容。</p><p>&nbsp; 本项目共分<span style="color: rgb(255, 0, 0);">hms_core,hms_config,hms_eureka,hms_admin，hms_api,</span>5个模块，分别实现项目核心的业务内容，项目配置中心，项目注册中心，项目后台管理，项目网关等功能，并采用docker技术，当成镜像启用容器来提供服务。</p><p>&nbsp; 项目代码托管在<span style="color: rgb(255, 0, 0);">git</span>上，git地址：<span style="color: rgb(255, 0, 0);"><strong>https://github.com/crizefish/hms</strong></span></p>
+         </p>
+        </ul>
+      </div>
+    </div>
+    
+    
+      <div class="container_s">
+	<div class="comment-list">
+	
+	</div>
+</div>
+    <div class="blank"></div>
+  </div>
+  
+  <footer>
+    <div class="footer">
+      <div class="f_l">
+        <p>想了解更多请联系我，邮箱地址：<a href="http://www.yangqq.com">103293443@qq.com</a></p>
+      </div>
+      <div class="f_r textr">
+        <p></p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script type="text/javascript" src="../js/jquery/1.9/jquery.js"></script>
+<script type="text/javascript" src="../js/jquery/jquery.comment.js" ></script>
+<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+</body>
+</html>

@@ -9,13 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hj.pers.entites.impl.Blogger;
 import com.hj.pers.entites.impl.Comment;
 import com.hj.pers.entites.impl.Note;
 import com.hj.pers.service.NoteService;
@@ -37,9 +44,12 @@ public class NoteController {
 		 * @param m
 		 * @return
 		 */
-	    @RequestMapping("/")
-	    String home1(Model m) {
-	    	List<Note> notes = bs.queryRecentNote(5L);
+	@RequestMapping("/")
+	String home1(Model m, @RequestParam(value = "startPage", defaultValue = "0") Integer page,
+			@RequestParam(value = "size", defaultValue = "4") Integer size) {
+		Sort sort = new Sort(Direction.DESC, "id");
+		Pageable pageable = new PageRequest(page==0?0:page-1, size, sort);
+		Page<Note> notes = bs.queryRecentNote(pageable);
 	    	m.addAttribute("notes", notes);
 	    	return"/note/note"; 
 	    } 
