@@ -1,5 +1,7 @@
 server:
   port: 8024
+
+          
 spring:
   application:
     name: hms-config
@@ -7,10 +9,11 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/crizefish/hms
-          search-paths: config-repo	
-          username: crizefish	
+          uri: https://github.com/crizefish/config-repo
+          search-paths: config-repo
+          username: crizefish
           password: xqy1020
+          
 eureka:
     client:
       serviceUrl:
