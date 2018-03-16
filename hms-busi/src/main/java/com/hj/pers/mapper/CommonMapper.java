@@ -10,18 +10,18 @@ import com.hj.pers.pojo.article.Common;
 @Mapper
 public interface CommonMapper {
 
-/**
- * 
- * @param orderBy
- * @return
- */
-public List<Common> findCommon(@Param("orderBy")String orderBy);
+	/**
+	 * 
+	 * @param orderBy
+	 * @return
+	 */
+	public List<Common> findCommon(@Param("orderBy") String orderBy);
 
-/***
- * 
- * @param keyWord
- * @return
- */
-public List<Common> searchByKeyWord(@Param("keyWord")String keyWord);
+	/***
+	 * 
+	 * @param keyWord
+	 * @return
+	 */
+	public List<Common> searchByKeyWord(@Param("keyWord") String keyWord);
 
 }

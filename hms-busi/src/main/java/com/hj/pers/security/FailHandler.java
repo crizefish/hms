@@ -12,11 +12,11 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 public class FailHandler implements AuthenticationFailureHandler {
 
 	@Override
-	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException auth)
-			throws IOException, ServletException {
+	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
+			AuthenticationException auth) throws IOException, ServletException {
 		request.setAttribute("result", "fail");
 		response.sendRedirect("/login");
-		
+
 	}
 
 }

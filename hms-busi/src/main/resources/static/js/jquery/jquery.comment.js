@@ -5,7 +5,7 @@
 			obj.time = getNowDateFormat();
 		}
 		
-		var el = "<div class='comment-info'><header><img src='"+obj.img+"'></header><div class='comment-right'><h3>"+obj.replyName+"</h3>"
+		var el = "<div class='comment-info'><header></header><div class='comment-right'><h3 style='color: seagreen;font-size: medium;'>"+obj.replyName+"</h3>"
 				+"<input type='hidden' value='"+obj.id+"' />"
 		+"<div class='comment-content-header'><span><i class='glyphicon glyphicon-time'></i>"+obj.time+"</span>";
 		
@@ -22,7 +22,7 @@
 			el = el + "<span><i class='glyphicon glyphicon-globe'></i> "+obj.browse+"</span>";
 		}
 		
-		el = el + "</div><div class='col-md-2'><span class='reply-btn'>回复</span></div></div></div><div class='reply-list'>";
+		el = el + "</div><div class='col-md-2'><span class='reply-btn' style='color:blueviolet'>回复</span></div></div></div><div class='reply-list'>";
 		if(obj.replyBody != "" &&obj.replyBody != null&& obj.replyBody.length > 0){
 			var arr = obj.replyBody;
 			for(var j=0;j<arr.length;j++){
@@ -37,7 +37,7 @@
 	//返回每个回复体内容
 	function createReplyComment(reply){
 		var replyEl = "<div class='reply'><div><a href='javascript:void(0)' class='replyname'>"+reply.replyName+"</a>:<a href='javascript:void(0)'>@"+reply.beReplyName+"</a><span>"+reply.content+"</span></div>"
-						+ "<p><span>"+reply.time+"</span> <span class='reply-list-btn'>回复</span></p></div>";
+						+ "<p><span>"+reply.time+"</span> <span class='reply-list-btn' style='color:blueviolet'>回复</span></p></div>";
 		return replyEl;
 	}
 	function getNowDateFormat(){
@@ -60,6 +60,28 @@
 	function replyClick(el){
 		el.parent().parent().append("<div class='replybox'><textarea cols='80' rows='50' placeholder='来说几句吧......' class='mytextarea' ></textarea><span class='send'>发送</span></div>")
 		.find(".send").click(function(){
+			
+			$.ajax({
+		        cache: true,
+		        type: "POST",
+		        url:"/message/comment",
+		        contentType: "application/json; charset=utf-8",
+		        data: JSON.stringify(obj),
+		        dataType: "json",
+		        async: false,
+		        error: function(request) {
+		            alert("Connection error");
+		        },
+		        success: function(data) {
+		            if(data.msg=='1'){
+		            	alert("回复成功")
+		            }else{
+		            	alert(data.msg)
+		            	alert(data.id)
+		            }
+		        }
+		    });
+			
 			var content = $(this).prev().val();
 			if(content != ""){
 				var parentEl = $(this).parent().parent().parent().parent();

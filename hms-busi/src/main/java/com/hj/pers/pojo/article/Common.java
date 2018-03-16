@@ -36,11 +36,12 @@ public class Common {
 		if (!StringUtils.isEmpty(keyWord)) {
 			if (this.title.contains(keyWord)) {
 				String newTitle = this.title.replaceAll(keyWord, "<span style=\"color:red\">" + keyWord + "</span>");
-		this.title = newTitle;
+				this.title = newTitle;
 			}
-			if (!StringUtils.isEmpty(this.content)&&this.content.contains(keyWord)) {
-				String newContent = this.content.replaceAll(keyWord, "<span style=\"color:red\">" + keyWord + "</span>");
-		this.content = newContent;
+			if (!StringUtils.isEmpty(this.content) && this.content.contains(keyWord)) {
+				String newContent = this.content.replaceAll(keyWord,
+						"<span style=\"color:red\">" + keyWord + "</span>");
+				this.content = newContent;
 			}
 		}
 

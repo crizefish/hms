@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,13 +16,12 @@ import com.hj.pers.resp.impl.MessageReposity;
 @Service
 @Transactional
 public class MessageService {
-@Autowired 
-private MessageReposity mr;
-	
+	@Autowired
+	private MessageReposity mr;
 
 	public Message saveMessage(Message c) {
 		c.setCreateTime(new Date());
-		if(StringUtils.isEmpty(c.getReplyName())){
+		if (StringUtils.isEmpty(c.getReplyName())) {
 			c.setReplyName("游客");
 		}
 		Message newC = mr.save(c);
@@ -31,12 +29,11 @@ private MessageReposity mr;
 	}
 
 	public List<Message> findAllMessage(String articleId) {
-		return  mr.findAll();
+		return mr.findAll();
 	}
-	
+
 	public Page<Message> findPageMessage(Pageable pageable) {
-		return  mr.findAll(pageable);
+		return mr.findAll(pageable);
 	}
-	
-	
+
 }

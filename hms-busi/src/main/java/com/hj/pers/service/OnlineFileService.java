@@ -22,15 +22,14 @@ import com.hj.pers.pojo.file.FileBean;
 import com.hj.pers.pojo.file.RootBean;
 import com.hj.pers.util.DocUtil;
 
-
 @Service
 public class OnlineFileService {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(OnlineFileService.class);
-	
-	
+
 	@Value("${fileDir}")
-	private String fileDir ;
+	private String fileDir;
+
 	/*
 	 * 获取根目录信息
 	 */
@@ -161,36 +160,36 @@ public class OnlineFileService {
 
 	}
 
-	public String file2html(String path){
-		if(!StringUtils.isEmpty(path)){
-			String filePath = path.substring(0, path.lastIndexOf("\\")+1);
-			String fileName = path.substring(path.lastIndexOf("\\")+1, path.length());
+	public String file2html(String path) {
+		if (!StringUtils.isEmpty(path)) {
+			String filePath = path.substring(0, path.lastIndexOf("\\") + 1);
+			String fileName = path.substring(path.lastIndexOf("\\") + 1, path.length());
 			String content = null;
-			
-			if(fileName.endsWith("doc")){
+
+			if (fileName.endsWith("doc")) {
 				try {
 					content = DocUtil.doc2html(filePath, fileName);
 				} catch (IOException e) {
-					logger.error("在线预览失败",e);
+					logger.error("在线预览失败", e);
 				} catch (ParserConfigurationException e) {
-					logger.error("在线预览失败",e);
+					logger.error("在线预览失败", e);
 				} catch (TransformerException e) {
-					logger.error("在线预览失败",e);
+					logger.error("在线预览失败", e);
 				}
-			}else if(fileName.endsWith("txt")){
+			} else if (fileName.endsWith("txt")) {
 				try {
 					content = DocUtil.txt2html(filePath, fileName);
 				} catch (IOException e) {
-					logger.error("在线预览失败",e);
+					logger.error("在线预览失败", e);
 				}
-			}else{
-				//预览其他类型文件有空再写吧
+			} else {
+				// 预览其他类型文件有空再写吧
 				return null;
 			}
 			return content;
-		}else{
+		} else {
 			return null;
 		}
 	}
-	
+
 }

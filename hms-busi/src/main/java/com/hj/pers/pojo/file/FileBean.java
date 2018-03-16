@@ -3,16 +3,16 @@ package com.hj.pers.pojo.file;
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
-public class FileBean implements Serializable{
+public class FileBean implements Serializable {
 	private String filePath;
 	private String fileName;
 	private String fileSize;
 	private String fileType;
-	
-	public FileBean() {}
 
-	public FileBean(String filePath, String fileName, String fileSize,
-			String fileType) {
+	public FileBean() {
+	}
+
+	public FileBean(String filePath, String fileName, String fileSize, String fileType) {
 		super();
 		this.filePath = filePath;
 		this.fileName = fileName;
@@ -51,6 +51,5 @@ public class FileBean implements Serializable{
 	public void setFileType(String fileType) {
 		this.fileType = fileType;
 	}
-	
-	
+
 }

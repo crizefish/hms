@@ -15,12 +15,13 @@ import com.hj.pers.resp.impl.CommentReposity;
 @Service
 @Transactional
 public class OtherService {
-@Autowired 
-private CommonMapper m;
-@Autowired 
-private CommentReposity cr;
 	
-	public List<Common> searchByKeyWord(String keyWord){
+	@Autowired
+	private CommonMapper m;
+	@Autowired
+	private CommentReposity cr;
+
+	public List<Common> searchByKeyWord(String keyWord) {
 		List<Common> s = m.searchByKeyWord(keyWord);
 		for (Common common : s) {
 			common.brushColor(keyWord);
@@ -35,7 +36,7 @@ private CommentReposity cr;
 	}
 
 	public List<Comment> findByArticleId(String articleId) {
-		return  cr.findByArticleId(articleId);
+		return cr.findByArticleId(articleId);
 	}
-	
+
 }

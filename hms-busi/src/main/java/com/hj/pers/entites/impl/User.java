@@ -17,14 +17,16 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.hj.pers.entites.Base;
-/**用户实体
+
+/**
+ * 用户实体
  * 
  * @author hujian
  *
  */
 @Table
-@Entity(name="user")
-public class User extends Base implements Serializable,UserDetails{
+@Entity(name = "user")
+public class User extends Base implements Serializable, UserDetails {
 	private static final long serialVersionUID = -1856544965147789551L;
 	private String userName;
 	private String password;
@@ -34,23 +36,24 @@ public class User extends Base implements Serializable,UserDetails{
 	@Transient
 	private Collection<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
 	@Transient
-	private boolean status ;
+	private boolean status;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Long id;
 
-	public User(Long id,String userName, String password) {
+	public User(Long id, String userName, String password) {
 		super();
 		this.userName = userName;
 		this.password = password;
 		this.id = id;
 	}
 
-	public void addauth(String role){
+	public void addauth(String role) {
 		this.auth.add(new SimpleGrantedAuthority(role));
 	}
+
 	public User() {
 		super();
 	}
@@ -81,8 +84,6 @@ public class User extends Base implements Serializable,UserDetails{
 		this.id = id;
 	}
 
-	
-	
 	public Collection<GrantedAuthority> getAuth() {
 		return auth;
 	}
@@ -152,6 +153,5 @@ public class User extends Base implements Serializable,UserDetails{
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
 
 }

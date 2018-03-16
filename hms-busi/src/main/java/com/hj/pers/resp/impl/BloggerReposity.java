@@ -10,9 +10,6 @@ import com.hj.pers.entites.impl.Blogger;
 import com.hj.pers.resp.BaseRepository;
 public interface BloggerReposity extends BaseRepository<Blogger,Long>{
 	
-//	@Query(value = "SELECT * FROM blogger  ORDER BY create_Date DESC LIMIT ?1,?2",nativeQuery=true)
-//	public List<Blogger>queryRecentBlogger(int from,int count);
-	
 	Page<Blogger> findAll(Pageable pageable);
 	
 	@Query(value = "SELECT * FROM blogger WHERE content LIKE %"+"?1"+"% ",nativeQuery=true)

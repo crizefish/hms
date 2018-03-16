@@ -8,23 +8,23 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.test.context.ActiveProfiles;
 
-	@SpringBootTest
-	@ActiveProfiles("163")
-	public class EmailUtil {
+@SpringBootTest
+@ActiveProfiles("163")
+public class EmailUtil {
 
-	    @Autowired
-	    private JavaMailSender mailSender; //自动注入的Bean
+	@Autowired
+	private JavaMailSender mailSender; // 自动注入的Bean
 
-	    @Value("${spring.mail.username}")
-	    private String Sender; //读取配置文件中的参数
+	@Value("${spring.mail.username}")
+	private String Sender; // 读取配置文件中的参数
 
-	    @Test
-	    public void sendSimpleMail() throws Exception {
-	        SimpleMailMessage message = new SimpleMailMessage();
-	        message.setFrom(Sender);
-	        message.setTo(Sender); //自己给自己发送邮件
-	        message.setSubject("主题：简单邮件");
-	        message.setText("测试邮件内容");
-	        mailSender.send(message);
-	    }
+	@Test
+	public void sendSimpleMail() throws Exception {
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setFrom(Sender);
+		message.setTo(Sender); // 自己给自己发送邮件
+		message.setSubject("主题：简单邮件");
+		message.setText("测试邮件内容");
+		mailSender.send(message);
+	}
 }

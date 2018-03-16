@@ -42,11 +42,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		 http  
-	        .authorizeRequests()  
-				.antMatchers("/css/**", "/images/**", "/js/**", "/plug/**", "/ueditor/**", "/user/**").permitAll()
-				.antMatchers("/blogger/**", "/index/**", "/login/**", "/message/**", "/news/**", "/note/**","/resource/**").permitAll()
-				.and().formLogin().loginPage("/login").successHandler(sh).failureHandler(fh).usernameParameter("username").passwordParameter("password").permitAll();
+		http.authorizeRequests().antMatchers("/css/**", "/images/**", "/js/**", "/plug/**", "/ueditor/**", "/user/**")
+				.permitAll()
+				.antMatchers("/blogger/**", "/index/**", "/login/**", "/message/**", "/news/**", "/note/**",
+						"/resource/**")
+				.permitAll().and().formLogin().loginPage("/login").successHandler(sh).failureHandler(fh)
+				.usernameParameter("username").passwordParameter("password").permitAll();
 		http.csrf().disable();
 	}
 }

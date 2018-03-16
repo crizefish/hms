@@ -34,8 +34,7 @@ public class UserService implements UserDetailsService {
 	private JavaMailSender mailSender; // 自动注入的Bean
 	@Value("${spring.mail.username}")
 	private String Sender; // 读取配置文件中的参数
-	
-	
+
 	public User findOne(Long id) {
 		return ur.findOne(id);
 	}
@@ -45,7 +44,7 @@ public class UserService implements UserDetailsService {
 		String[] s = userName.split("#");
 		String u = s[0];
 		String p = s[1];
-		User user = ur.findByUserNameAndPassword(u,p);
+		User user = ur.findByUserNameAndPassword(u, p);
 		if (user == null) {
 			throw new UsernameNotFoundException("用户名不存在");
 		}
@@ -58,38 +57,40 @@ public class UserService implements UserDetailsService {
 
 	public int sendNum(String add) {
 		Random r = new Random();
-		int l = r.nextInt(8999)+1000;
-		   SimpleMailMessage message = new SimpleMailMessage();
-	        message.setFrom(Sender);
-	        message.setTo(new String[]{add,Sender}); //自己给自己发送邮件
-	        message.setSubject("欢迎加入我的个人网站，请验证登录邮箱思密达");
-	        message.setText(add+"，您好!您获取的验证码是"+l);
-	        mailSender.send(message);
+		int l = r.nextInt(8999) + 1000;
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setFrom(Sender);
+		message.setTo(new String[] { add, Sender }); // 自己给自己发送邮件
+		message.setSubject("欢迎加入我的个人网站，请验证登录邮箱思密达");
+		message.setText(add + "，您好!您获取的验证码是" + l);
+		mailSender.send(message);
 		return l;
 	}
-	
-	public User saveUser(User u) throws IOException, Exception{
-		if(!StringUtils.isEmpty(u.getUsername())){
-			u.setPassword(DesUtil.aesEncrypt(u.getPassword(),Constants.KEY));
-			User user = (User)setCommonInfo(u);
-			 return ur.saveAndFlush(user);
-		}else{
+
+	public User saveUser(User u) throws IOException, Exception {
+		if (!StringUtils.isEmpty(u.getUsername())) {
+			u.setPassword(DesUtil.aesEncrypt(u.getPassword(), Constants.KEY));
+			User user = (User) setCommonInfo(u);
+			return ur.saveAndFlush(user);
+		} else {
 			return null;
 		}
 	}
-	
-	public List<Common> findTopCommon(){
+
+	public List<Common> findTopCommon() {
 		return cm.findCommon("top_num");
 	}
-	public List<Common> findHotCommon(){
+
+	public List<Common> findHotCommon() {
 		return cm.findCommon("read_num");
 	}
-	public User findUserInfo() throws ClassCastException{
-			return (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+	public User findUserInfo() throws ClassCastException {
+		return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	}
-	
-	public Base setCommonInfo(Base b) throws ClassCastException{
-		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+	public Base setCommonInfo(Base b) throws ClassCastException {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = user.getUsername();
 		b.setCreateDate(new Date());
 		b.setAuthor(username);
@@ -98,8 +99,8 @@ public class UserService implements UserDetailsService {
 
 	public boolean checkUsername(String username) {
 		User user = ur.findByUserName(username);
-		return user==null?false:true;
-		
+		return user == null ? false : true;
+
 	}
-	
+
 }

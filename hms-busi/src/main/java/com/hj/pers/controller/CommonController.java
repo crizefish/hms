@@ -13,29 +13,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.baidu.ueditor.ActionEnter;
 
-@Controller  
-@Transactional  
-@RequestMapping("/")  
-public class CommonController {  
-    @RequestMapping(value = "/ueditor")  
-    public void config(HttpServletRequest request, HttpServletResponse response) {  
-        response.setContentType("application/json");  
-        String rootPath = request.getSession().getServletContext()  
-                .getRealPath("/");  
-        try {  
-            String exec = new ActionEnter(request, rootPath).exec();  
-            PrintWriter writer = response.getWriter();  
-            writer.write(exec);  
-            writer.flush();  
-            writer.close();  
-        } catch (IOException e) {  
-            e.printStackTrace();  
-        }  
-    }  
-    
-    
-    @RequestMapping(name="/login")
-    public String login(Model m) {
-    	return "/login/login"; 
-    } 
-}  
+@Controller
+@Transactional
+@RequestMapping("/")
+public class CommonController {
+	@RequestMapping(value = "/ueditor")
+	public void config(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("application/json");
+		String rootPath = request.getSession().getServletContext().getRealPath("/");
+		try {
+			String exec = new ActionEnter(request, rootPath).exec();
+			PrintWriter writer = response.getWriter();
+			writer.write(exec);
+			writer.flush();
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@RequestMapping(name = "/login")
+	public String login(Model m) {
+		return "/login/login";
+	}
+}

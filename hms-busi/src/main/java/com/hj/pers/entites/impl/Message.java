@@ -16,146 +16,143 @@ import javax.persistence.OrderBy;
 
 import com.hj.pers.entites.Base;
 
-@Entity(name="message")
-public class Message extends Base{
-			//id
-			@Id
-		    @GeneratedValue(strategy=GenerationType.IDENTITY)
-		    @Column(name = "id")
-		    private Long id;
-			
-			private Long replyId;
-			
-			private String replyName;
-			
-			private Long beReplyId;
-			
-			private String beReplyName;
-			
-			private String content;
-			
-			private Date createTime;
-			
-			private Long parentId;
-			
-			private String articleId;
-			
-			private Long LikeNum;
-			
-			private Long unLikeNum;
-			
-			private String address;
-			
-			@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.REFRESH)
-			@JoinColumn(name="parentId")
-			@OrderBy(value="createTime")
-			private List<Message> replyBody;
+@Entity(name = "message")
+public class Message extends Base {
+	// id
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Long id;
 
-			public Long getId() {
-				return id;
-			}
+	private Long replyId;
 
-			public void setId(Long id) {
-				this.id = id;
-			}
+	private String replyName;
 
-			public Long getReplyId() {
-				return replyId;
-			}
+	private Long beReplyId;
 
-			public void setReplyId(Long replyId) {
-				this.replyId = replyId;
-			}
+	private String beReplyName;
 
-			public String getReplyName() {
-				return replyName;
-			}
+	private String content;
 
-			public void setReplyName(String replyName) {
-				this.replyName = replyName;
-			}
+	private Date createTime;
 
-			public Long getBeReplyId() {
-				return beReplyId;
-			}
+	private Long parentId;
 
-			public void setBeReplyId(Long beReplyId) {
-				this.beReplyId = beReplyId;
-			}
+	private String articleId;
 
-			public String getBeReplyName() {
-				return beReplyName;
-			}
+	private Long LikeNum;
 
-			public void setBeReplyName(String beReplyName) {
-				this.beReplyName = beReplyName;
-			}
+	private Long unLikeNum;
 
-			public String getContent() {
-				return content;
-			}
+	private String address;
 
-			public void setContent(String content) {
-				this.content = content;
-			}
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@JoinColumn(name = "parentId")
+	@OrderBy(value = "createTime")
+	private List<Message> replyBody;
 
-			public Date getCreateTime() {
-				return createTime;
-			}
+	public Long getId() {
+		return id;
+	}
 
-			public void setCreateTime(Date createTime) {
-				this.createTime = createTime;
-			}
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-			public Long getParentId() {
-				return parentId;
-			}
+	public Long getReplyId() {
+		return replyId;
+	}
 
-			public void setParentId(Long parentId) {
-				this.parentId = parentId;
-			}
+	public void setReplyId(Long replyId) {
+		this.replyId = replyId;
+	}
 
-			public String getArticleId() {
-				return articleId;
-			}
+	public String getReplyName() {
+		return replyName;
+	}
 
-			public void setArticleId(String articleId) {
-				this.articleId = articleId;
-			}
+	public void setReplyName(String replyName) {
+		this.replyName = replyName;
+	}
 
-			public Long getLikeNum() {
-				return LikeNum;
-			}
+	public Long getBeReplyId() {
+		return beReplyId;
+	}
 
-			public void setLikeNum(Long likeNum) {
-				LikeNum = likeNum;
-			}
+	public void setBeReplyId(Long beReplyId) {
+		this.beReplyId = beReplyId;
+	}
 
-			public Long getUnLikeNum() {
-				return unLikeNum;
-			}
+	public String getBeReplyName() {
+		return beReplyName;
+	}
 
-			public void setUnLikeNum(Long unLikeNum) {
-				this.unLikeNum = unLikeNum;
-			}
+	public void setBeReplyName(String beReplyName) {
+		this.beReplyName = beReplyName;
+	}
 
-			public String getAddress() {
-				return address;
-			}
+	public String getContent() {
+		return content;
+	}
 
-			public void setAddress(String address) {
-				this.address = address;
-			}
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-			public List<Message> getReplyBody() {
-				return replyBody;
-			}
+	public Date getCreateTime() {
+		return createTime;
+	}
 
-			public void setReplyBody(List<Message> replyBody) {
-				this.replyBody = replyBody;
-			}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
 
-			
+	public Long getParentId() {
+		return parentId;
+	}
 
-			
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
+	}
+
+	public String getArticleId() {
+		return articleId;
+	}
+
+	public void setArticleId(String articleId) {
+		this.articleId = articleId;
+	}
+
+	public Long getLikeNum() {
+		return LikeNum;
+	}
+
+	public void setLikeNum(Long likeNum) {
+		LikeNum = likeNum;
+	}
+
+	public Long getUnLikeNum() {
+		return unLikeNum;
+	}
+
+	public void setUnLikeNum(Long unLikeNum) {
+		this.unLikeNum = unLikeNum;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public List<Message> getReplyBody() {
+		return replyBody;
+	}
+
+	public void setReplyBody(List<Message> replyBody) {
+		this.replyBody = replyBody;
+	}
+
 }
